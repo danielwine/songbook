@@ -15,17 +15,27 @@
 Egy reszponzív, mobilra optimalizált listanézetben az alkalmazás kezdőoldalán megjelenik az összes, adatbázisban szereplő előadó, ABC sorrendben megjelenítve. Mindegyik név mellett számláló jelzi, hogy az adott előadóhoz hány bejegyzés tartozik.
 
 ---
+
+**2. agilis felhasználói történet:**
+
+> _Az adott előadót kiválasztva megjelenik az előadott dalok listája._
+
+**Elfogadási kritérium:**
+
+Az egyes előadókra kattintva egy új nézet megjeleníti az adott előadóhoz kapcsolódó dalok nevét ABC rendben, azok fontosabb adataival (legalább az album és a műfaj tulajdonságokkal) együtt.
+
 ---
-## _**2. A dalok listája**_
+---
+## _**2. A dalok listája (összesített) **_
 ---
 
 **1. agilis felhasználói történet:**
 
-> _Az összes, adatbázisban tárolt dal összesített formában, ömlesztve is áttekinthető, valamint szerkeszthető._
+> _Minden adatbázisban tárolt dal összesített formában, ömlesztve is áttekinthető és szerkeszthető._
 
 **Elfogadási kritérium:**
 
-A dalok ikonra kattintáskor megjelenik a dalok összesített nézete. A dalok attribútumai, tulajdonságai a következők:
+A dalok ikonra / menüpontra kattintáskor megjelenik a dalok összesített nézete. A dalok attribútumai, tulajdonságai a következők:
 az előadó neve, az album neve, amin az adott dal szerepel, az első megjelenés éve, a zeneszerző(k) neve(i), a szövegíró(k) neve(i), a műfaj megnevezése és opcionálisan a dal hossza.
 
 ---
@@ -44,7 +54,7 @@ az előadó neve, az album neve, amin az adott dal szerepel, az első megjelené
 > _A dal tulajdonságai módosíthatóak._
 
 **Elfogadási kritérium:**  
-- Az adott dalra kattintva megjelenik a szerkesztőfelület párbeszédablaka. Itt lehetőség van módosítani az adott dal egyes attribútumain. A változtatásokat az adatbázis letárolja és ez az esemény automatikusan a lista frissülését és a párbeszédablak eltűnését eredményezi.
+- Az adott dal szerkesztés ikonjára kattintva megjelenik a szerkesztőfelület párbeszédablaka. Itt lehetőség van módosítani az adott dal egyes attribútumain. A változtatásokat az adatbázis letárolja és ez az esemény automatikusan a lista frissülését és a párbeszédablak eltűnését eredményezi.
 
 ---
 
@@ -119,9 +129,9 @@ A kulcsszó beírásával frissül a listaoldal, ahol már csak az adott kulcssz
 ---
 ---
 
-## _**4. Egyéb lehetséges aloldalak**_
+## _**4. Egyéb lehetséges (al)oldalak**_
 
-Az alábbiak a következő lehetséges aloldalakra érvényesek:
+Az alábbiak a következő lehetséges (al)oldalakra érvényesek:
 
 **_Előadók_**
 
@@ -161,7 +171,7 @@ Az alábbiak a következő lehetséges aloldalakra érvényesek:
 > _Az elemek tulajdonságait szerkeszteni lehet._
 
 **Elfogadási kritérium:**  
-- Az adott elemre kattintva megjelenik a szerkesztőfelület párbeszédablaka. Itt lehetőség van módosítani az adott elem egyes attribútumain. A változtatásokat az adatbázis letárolja és ez az esemény automatikusan a lista frissülését és a párbeszédablak eltűnését eredményezi.
+- Az adott elem szerkesztés ikonjára kattintva megjelenik a szerkesztőfelület párbeszédablaka. Itt lehetőség van módosítani az adott elem egyes attribútumain. A változtatásokat az adatbázis letárolja és ez az esemény automatikusan a lista frissülését és a párbeszédablak eltűnését eredményezi.
 
 ---
 
