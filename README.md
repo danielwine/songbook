@@ -26,7 +26,7 @@ Az egyes előadókra kattintva egy új nézet megjeleníti az adott előadóhoz 
 
 ---
 ---
-## _**2. A dalok listája (összesített) **_
+## _**2. A dalok összesített listája**_
 ---
 
 **1. agilis felhasználói történet:**
@@ -129,7 +129,7 @@ A kulcsszó beírásával frissül a listaoldal, ahol már csak az adott kulcssz
 ---
 ---
 
-## _**4. Egyéb lehetséges (al)oldalak**_
+## _**4. Egyéb (al)oldalak**_
 
 Az alábbiak a következő lehetséges (al)oldalakra érvényesek:
 
