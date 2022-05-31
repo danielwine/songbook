@@ -8,6 +8,26 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'songs',
+    component: HomeComponent,
+  },
+  {
+    path: 'albums',
+    component: HomeComponent,
+  },
+  {
+    path: 'artists',
+    component: HomeComponent,
+  },
+  {
+    path: 'lyricists',
+    component: HomeComponent,
+  },
+  {
+    path: 'composer',
+    component: HomeComponent,
+  },
+  {
     path: "category/:categoryId",
     component: HomeComponent,
   },
