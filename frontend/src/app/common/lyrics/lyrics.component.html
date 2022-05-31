@@ -1,0 +1,13 @@
+<div class="lyrics-header">
+  <h3>{{ song.artist }}:</h3>
+  <h2>{{ song.title }}</h2>
+  <h4>
+    <em
+      >szöveg: {{ song.lyricist }}, zene: {{ song.composer }}
+      <br />
+      album: {{ song.album }} ({{ song.year }})</em
+    >
+  </h4>
+</div>
+<hr>
+<pre>{{ song.lyrics }}</pre>

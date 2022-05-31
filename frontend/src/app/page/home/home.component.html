@@ -1,1 +1,40 @@
-<p>home works!</p>
+<!-- <mat-list>
+  <mat-list-item *ngFor="let message of messages">
+    <h3 matLine>
+      {{ message.from }}
+      <span matBadge="4" matBadgeOverlap="false">&nbsp;</span>
+    </h3>
+    <p matLine>{{ message.subject }}</p>
+    <p matLine class="demo-2" matBadge="4" matBadgeOverlap="false">
+      {{ message.content }}
+    </p>
+  </mat-list-item>
+</mat-list> -->
+
+<mat-grid-list cols="8" rowHeight="1:4">
+  <mat-grid-tile colspan="1">
+    <div class="text-inside-grid">
+      <app-simplelist
+      *ngIf="artists$ | async as list"
+      [list]="list"
+      entityName="Előadó"
+    ></app-simplelist>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <div class="text-inside-grid">
+      <app-simplelist
+      *ngIf="songs$ | async as list"
+      [list]="list"
+      entityName="Dal"
+    ></app-simplelist>
+    </div>
+    <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam dolorum earum debitis officiis exercitationem qui corporis beatae! Exercitationem eum magnam impedit ducimus, aliquam rem ipsum velit quos fugiat eius quasi.-->
+  </mat-grid-tile>
+  <mat-grid-tile class="lyrics-container" colspan="3">
+
+    <div *ngIf="songs$ | async as list" class="lyrics">
+        <app-lyrics [song]="list[0]"></app-lyrics>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

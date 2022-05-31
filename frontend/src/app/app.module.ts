@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +21,10 @@ import { HomeComponent } from './page/home/home.component';
 
 import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SimplelistComponent } from './common/simplelist/simplelist.component';
+import { LyricsComponent } from './common/lyrics/lyrics.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,9 @@ import { SorterPipe } from './pipe/sorter.pipe';
     HeaderComponent,
     HomeComponent,
     FilterPipe,
-    SorterPipe
+    SorterPipe,
+    SimplelistComponent,
+    LyricsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,13 +42,16 @@ import { SorterPipe } from './pipe/sorter.pipe';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatGridListModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatBadgeModule
+    MatBadgeModule,
+    LayoutModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,25 @@
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 19vw;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+.text-inside-grid {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.lyrics-container {
+  border-left: solid 1px lightgrey;
+}
+
+.lyrics {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
