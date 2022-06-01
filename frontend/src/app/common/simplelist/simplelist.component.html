@@ -1,17 +1,47 @@
 <form class="form">
   <mat-form-field class="form-full-width" appearance="fill">
-    <mat-label>{{entityName}} keresése</mat-label>
-    <input [(ngModel)]="phrase" type="text" name="{{entityName}}" matInput placeholder="pl. Illés" value="" />
+    <mat-label>{{ entityName }} keresése</mat-label>
+    <input
+      [(ngModel)]="phrase"
+      type="text"
+      name="{{ entityName }}"
+      matInput
+      placeholder="pl. {{ example }}"
+      value=""
+    />
   </mat-form-field>
 </form>
 
 <mat-list>
-  <mat-list-item *ngFor="let item of list | filter: phrase : filterKey | sorter: sorterKey : sorterDirection">
+  <mat-list-item
+    *ngFor="
+      let item of list
+        | filter: phrase:filterKey
+        | sorter: sorterKey:sorterDirection
+    "
+  >
     <h3 matLine>
-      <span *ngIf="item.songs" matBadge="{{item.songs.length}}"
-      matBadgePosition="after" matBadgeOverlap="false">&nbsp;</span>
-      <span *ngIf="item.name" class="item-name">{{ item.name }}</span>
-      <span *ngIf="item.title" class="item-name">{{ item.title }}</span>
+      <span
+        *ngIf="item.songs"
+        matBadge="{{ item.songs.length }}"
+        matBadgePosition="after"
+        matBadgeOverlap="false"
+        >&nbsp;</span
+      >
+      <span
+        *ngIf="item.name"
+        (click)="update($event)"
+        id="{{ item._id }}"
+        class="item-name"
+        >{{ item.name }}</span
+      >
+      <span
+        *ngIf="item.title"
+        (click)="update($event)"
+        id="{{ item._id }}"
+        class="item-title"
+        >{{ item.title }}</span
+      >
     </h3>
   </mat-list-item>
 </mat-list>

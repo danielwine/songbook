@@ -15,26 +15,29 @@
   <mat-grid-tile colspan="1">
     <div class="text-inside-grid">
       <app-simplelist
-      *ngIf="artists$ | async as list"
-      [list]="list"
-      entityName="Előadó"
-    ></app-simplelist>
+        *ngIf="artists$ | async as list"
+        [list]="list"
+        entityName="Előadó"
+        example="Illés"
+        (updateRequest)="updateSongList($event)"
+      ></app-simplelist>
     </div>
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <div class="text-inside-grid">
       <app-simplelist
-      *ngIf="songs$ | async as list"
-      [list]="list"
-      entityName="Dal"
-    ></app-simplelist>
+        *ngIf="visibleSongs$ | async as list"
+        [list]="list"
+        entityName="Dal"
+        example="Gyöngyhajú lány"
+        sorterKey="title"
+        (updateRequest)="updateLyrics($event)"
+      ></app-simplelist>
     </div>
-    <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam dolorum earum debitis officiis exercitationem qui corporis beatae! Exercitationem eum magnam impedit ducimus, aliquam rem ipsum velit quos fugiat eius quasi.-->
   </mat-grid-tile>
   <mat-grid-tile class="lyrics-container" colspan="3">
-
-    <div *ngIf="songs$ | async as list" class="lyrics">
-        <app-lyrics [song]="list[0]"></app-lyrics>
+    <div class="lyrics">
+      <app-lyrics [song]="currentSong"></app-lyrics>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

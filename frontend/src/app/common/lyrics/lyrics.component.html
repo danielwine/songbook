@@ -1,13 +1,17 @@
-<div class="lyrics-header">
+<div *ngIf="song.title" class="lyrics-header">
   <h3>{{ song.artist }}:</h3>
   <h2>{{ song.title }}</h2>
   <h4>
-    <em
-      >szöveg: {{ song.lyricist }}, zene: {{ song.composer }}
-      <br />
-      album: {{ song.album }} ({{ song.year }})</em
-    >
+    <em>
+      <div *ngIf="song.lyricist">
+        <span>szöveg: {{ song.lyricist }}, zene: {{ song.composer }}</span>
+        <br />
+      </div>
+      <div *ngIf="song.album">
+        <span> album: {{ song.album }} ({{ song.year }}) </span>
+      </div>
+    </em>
   </h4>
 </div>
-<hr>
+<hr />
 <pre>{{ song.lyrics }}</pre>
