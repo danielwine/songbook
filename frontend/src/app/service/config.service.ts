@@ -10,6 +10,7 @@ export interface IMenuItem {
   providedIn: 'root',
 })
 export class ConfigService {
+  apiUrl = 'http://localhost:3000';
   sidebarMenu: IMenuItem[] = [
     { link: '/', title: 'Kezdőoldal', icon: 'home' },
 

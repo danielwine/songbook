@@ -25,6 +25,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SimplelistComponent } from './common/simplelist/simplelist.component';
 import { LyricsComponent } from './common/lyrics/lyrics.component';
+import { ForbiddenComponent } from './page/forbidden/forbidden.component';
+import { LoginComponent } from './page/login/login.component';
+import { UsersComponent } from './page/users/users.component';
+import { UserEditComponent } from './page/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,10 @@ import { LyricsComponent } from './common/lyrics/lyrics.component';
     SorterPipe,
     SimplelistComponent,
     LyricsComponent,
+    ForbiddenComponent,
+    LoginComponent,
+    UsersComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
