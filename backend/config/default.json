@@ -1,0 +1,9 @@
+{
+  "database": {
+    "username": "",
+    "password": "",
+    "host": "localhost:27017",
+    "database": "songbook",
+    "parameters": "retryWrites=true&w=majority"
+  }
+}

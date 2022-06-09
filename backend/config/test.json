@@ -1,0 +1,10 @@
+{
+    "database": {
+      "username": "",
+      "password": "",
+      "host": "localhost:27017",
+      "database": "test",
+      "parameters": "retryWrites=true&w=majority"
+    }
+  }
+  
