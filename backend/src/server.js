@@ -43,6 +43,8 @@ app.use(morgan('tiny', { stream: logger.stream }));
 
 app.use(express.json())
 
+app.use('/song', require('./controller/song/router'));
+app.use('/artist', require('./controller/artist/router'));
 app.use('/', (req, res) => { res.send('api server') });
 
 app.use((err, req, res, next) => {
@@ -51,7 +53,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode);
     res.json({
         hasError: true,
-        message: 'Jim, he is dead. :('
+        errorCode: statusCode,
+        message: err.message
     });
 });
 
