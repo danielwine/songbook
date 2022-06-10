@@ -24,16 +24,16 @@ const SongSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    lyricist: {
+    lyricist: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Lyricist",
         required: false
-    },
-    composer: {
+    }],
+    composer: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Composer",
-    },
-    x_genres: [{
+    }],
+    x_genre: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Genre",
         required: false

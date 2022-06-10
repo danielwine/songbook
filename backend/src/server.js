@@ -26,7 +26,7 @@ const mongooseConnect = (seedDatabase = false) => {
         .then(() => logger.info(
             "MongoDB connection has been established successfully"))
         .catch(err => {
-            logger.warn(
+            return logger.warn(
                 'Cannot connect to MongoDB. All queries will be disabled.')
         })
         .then(
