@@ -10,11 +10,11 @@ module.exports.login = async (req, res, next) => {
     let success = false
     const { username, password } = req.body;
     const user = await User.findOne({ username })
-    if (!user) return next(new createError.Forbidden(msgIncorrect))
+    if (!user) return next(new createError.Unauthorized(msgIncorrect))
 
     user.comparePassword(password, (err, isMatch) => {
         if (isMatch) success = true
-        if (!success) return next(new createError.Forbidden(msgIncorrect))
+        if (!success) return next(new createError.Unauthorized(msgIncorrect))
         const accessToken = jwt.sign({
             username: user.username, role: user.role
         }, process.env.ACCESS_TOKEN_SECRET, {
@@ -37,7 +37,7 @@ module.exports.refresh = (req, res, next) => {
         return next(new createError.Unauthorized())
     }
     if (!refreshTokens.includes(token)) {
-        return next(new createError.Forbidden())
+        return next(new createError.Unauthorized())
     }
     const authHeader = req.headers.authorization;
     jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
@@ -59,7 +59,7 @@ module.exports.refresh = (req, res, next) => {
 module.exports.logout = (req, res, next) => {
     const { token } = req.body;
     if (refreshTokens.indexOf(token) === -1) {
-        return next(new createError.Forbidden())
+        return next(new createError.Unauthorized())
     }
     refreshTokens.splice(refreshTokens.indexOf(token), 1);
     res.sendStatus(200);

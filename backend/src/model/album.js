@@ -6,6 +6,15 @@ const AlbumSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    artist: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Artist",
+        required: true
+    },
+    year: {
+        type: Number,
+        required: false
+    },
     imageUrl: {
         type: String,
         required: false

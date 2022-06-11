@@ -4,19 +4,21 @@ const { mongooseConnect, app } = require('./server');
 
 const port = process.env.PORT || 3000;
 
-const seedDatabase = false
+const seedDatabase = true
 const seedUsers = true
 
 mongooseConnect()
     .then(
         conn => {
-            if (seedDatabase) {
-                require('./seed/seeder');
-                console.log('Database is seeded!');
-            }
-            if (seedUsers) {
-                require('./seed/user')
-                console.log('Users created.');
+            if (conn) {
+                if (seedDatabase) {
+                    require('./seed/seeder');
+                    console.log('Database is seeded!');
+                }
+                if (seedUsers) {
+                    require('./seed/user')
+                    console.log('Users created.');
+                }
             }
         })
 

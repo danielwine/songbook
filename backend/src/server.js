@@ -18,15 +18,16 @@ const login = username ? `${username}:${password}@` : ''
 
 const mongooseConnect = () => {
     return mongoose
-        .connect(`mongodb://${login}${host}/${database}?${parameters}`, {
+        .connect(`mongodb+srv://${login}${host}/${database}?${parameters}`, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
         .then(() => logger.info(
             "MongoDB connection has been established successfully"))
         .catch(err => {
-            return logger.warn(
-                'Cannot connect to MongoDB. All queries will be disabled.')
+            logger.error(
+                `Cannot connect to MongoDB: ${err}\nServer is stopping...`)
+            process.exit()
         })
 }
 
@@ -44,10 +45,10 @@ app.post('/logout', authHandlers.logout);
 app.use('/song',
     require('./controller/song/router'));
 app.use('/artist',
-    authenticateJwt, adminOnly,
+    // authenticateJwt, adminOnly,
     require('./controller/artist/router'));
 app.use('/album',
-    authenticateJwt, adminOnly,
+    // authenticateJwt, adminOnly,
     require('./controller/album/router'));
 app.use('/composer',
     authenticateJwt, adminOnly,
