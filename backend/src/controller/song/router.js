@@ -1,6 +1,7 @@
 const express = require("express");
-const Song = require('../../model/song');
-const controller = require('../base/controller')(Song);
+const songService = require('../song/service');
+const controller = require('../base/controller')(songService);
+
 const router = express.Router();
 
 router.post('/', (req, res, next) => {

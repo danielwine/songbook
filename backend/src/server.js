@@ -45,6 +45,10 @@ app.use(express.json())
 
 app.use('/song', require('./controller/song/router'));
 app.use('/artist', require('./controller/artist/router'));
+app.use('/album', require('./controller/album/router'));
+app.use('/composer', require('./controller/composer/router'));
+app.use('/lyricist', require('./controller/lyricist/router'));
+app.use('/genre', require('./controller/genre/router'));
 app.use('/', (req, res) => { res.send('api server') });
 
 app.use((err, req, res, next) => {

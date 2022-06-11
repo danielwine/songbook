@@ -12,8 +12,7 @@ const isIdInvalid = (id, next) => {
     } else return false
 }
 
-module.exports = (model) => {
-    const service = baseService(model);
+module.exports = (service) => {
     return {
         create: (req, res, next) => {
             const validationErrors = new model(req.body).validateSync();

@@ -1,6 +1,6 @@
 const express = require("express");
-const artistService = require('../artist/service');
-const controller = require('../base/controller')(artistService);
+const albumService = require('../album/service');
+const controller = require('../base/controller')(albumService);
 
 const router = express.Router();
 
