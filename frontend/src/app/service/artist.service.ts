@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class ArtistService extends BaseService<Artist> {
   constructor(public override http: HttpClient) {
     super(http);
-    this.setUrlFor('artists');
+    this.setUrlFor('artist');
   }
 }

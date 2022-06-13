@@ -15,8 +15,7 @@
   <mat-grid-tile colspan="1">
     <div class="text-inside-grid">
       <app-simplelist
-        *ngIf="artists$ | async as list"
-        [list]="list"
+        [list]="artists$ | async"
         entityName="Előadó"
         example="Illés"
         (updateRequest)="updateSongList($event)"
@@ -26,8 +25,7 @@
   <mat-grid-tile colspan="2">
     <div class="text-inside-grid">
       <app-simplelist
-        *ngIf="visibleSongs$ | async as list"
-        [list]="list"
+        [list]="visibleSongs$ | async"
         entityName="Dal"
         example="Gyöngyhajú lány"
         sorterKey="title"

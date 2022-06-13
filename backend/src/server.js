@@ -2,6 +2,7 @@ const config = require('config');
 const YAML = require('yamljs');
 const logger = require('./logger.js')
 const express = require('express');
+const cors = require('cors');
 const morgan = require("morgan");
 const mongoose = require('mongoose');
 
@@ -34,6 +35,7 @@ const mongooseConnect = () => {
 const app = express();
 app.use(morgan('tiny', { stream: logger.stream }));
 
+app.use(cors());
 app.use(express.json())
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

@@ -1,14 +1,23 @@
+<!-- <pre>{{ song | json }}</pre> -->
+
 <div *ngIf="song.title" class="lyrics-header">
-  <h3>{{ song.artist }}:</h3>
+  <h3>{{ song.artist.name }}:</h3>
   <h2>{{ song.title }}</h2>
   <h4>
     <em>
-      <div *ngIf="song.lyricist">
-        <span>szöveg: {{ song.lyricist }}, zene: {{ song.composer }}</span>
+      <div *ngIf="song.lyricist.length == 1">
+        szöveg:
+        <span *ngFor="let lyricist of song.lyricist">
+          {{ lyricist.name }},&nbsp;
+        </span>
+        zene:
+        <span *ngFor="let composer of song.composer">
+          {{ composer.name }},&nbsp;
+        </span>
         <br />
       </div>
       <div *ngIf="song.album">
-        <span> album: {{ song.album }} ({{ song.year }}) </span>
+        <span> album: {{ song.album.name }} ({{ song.year }}) </span>
       </div>
     </em>
   </h4>

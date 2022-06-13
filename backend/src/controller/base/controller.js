@@ -40,7 +40,7 @@ module.exports = (service) => {
                     if (item == '') {
                         return next(new createError
                             .NotFound(msgNotFound))
-                    } else res.json(item)
+                    } else { res.json(item[0]) }
                 })
         },
         updateOne: (req, res, next) => {

@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./simplelist.component.scss'],
 })
 export class SimplelistComponent<T> implements OnInit {
-  @Input() list: T[] = [];
+  @Input() list: T[] | null = [];
   @Input() entityName = '';
   @Input() example = '';
   @Input() sorterKey = 'name';

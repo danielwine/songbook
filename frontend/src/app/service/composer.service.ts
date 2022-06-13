@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class ComposerService extends BaseService<Composer> {
   constructor(public override http: HttpClient) {
     super(http);
-    this.setUrlFor('composers');
+    this.setUrlFor('composer');
   }
 }

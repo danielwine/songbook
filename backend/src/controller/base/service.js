@@ -13,7 +13,7 @@ module.exports = (model) => {
             const item = new model(itemData);
             return item.save();
         },
-        findAll: () => model.find({}),
+        findAll: () => model.find({}, { lyrics: 0 }),
         findOne: (id) => model.find({ _id: id }),
         findItemIdByName: (itemName) => {
             const result = model.find({ name: itemName });

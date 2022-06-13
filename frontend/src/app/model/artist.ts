@@ -1,5 +1,5 @@
 export class Artist {
-  _id: number | string = 0;
+  _id: string = '';
   name: string = '';
   songs: number[] | string[] = [];
   imageUrl?: string = '';

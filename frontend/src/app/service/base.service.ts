@@ -30,8 +30,8 @@ export class BaseService<T extends { _id: number | string }> {
     return this.http.get<T[]>(this.apiFullUrl);
   }
 
-  getItem(id: number): Observable<T> {
-    return this.http.get<T>(this.apiFullUrl + '/' + id.toString());
+  getItem(id: string): Observable<T> {
+    return this.http.get<T>(this.apiFullUrl + '/' + id);
   }
 
   updateItem(item: T): Observable<T> {

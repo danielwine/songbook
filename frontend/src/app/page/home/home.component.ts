@@ -13,7 +13,7 @@ import { SongService } from 'src/app/service/song.service';
 export class HomeComponent implements OnInit {
   artists$: Observable<Artist[]> = this.artistService.getAll();
   songs$: Observable<Song[]> = this.songService.getAll();
-  visibleSongs$ = this.songs$
+  visibleSongs$ = this.songs$;
   currentSong = new Song();
 
   constructor(
@@ -23,9 +23,7 @@ export class HomeComponent implements OnInit {
 
   updateSongList(event: Event) {
     this.artists$.subscribe((artists) => {
-      const artist = artists.find(
-        (item) => item._id === parseInt(event.toString())
-      );
+      const artist = artists.find((item) => item._id === event.toString());
       console.log(artist?.songs);
       if (artist && artist.songs)
         this.visibleSongs$ = this.songs$.pipe(
@@ -39,9 +37,12 @@ export class HomeComponent implements OnInit {
   }
 
   updateLyrics(event: Event) {
-    this.songService
-      .getItem(parseInt(event.toString()))
-      .subscribe((item: Song) => (this.currentSong = item));
+    this.songService.getItem(event.toString()).subscribe((item: Song) => {
+      console.log(item);
+
+      this.currentSong = item;
+      console.log(this.currentSong);
+    });
   }
 
   ngOnInit(): void {
