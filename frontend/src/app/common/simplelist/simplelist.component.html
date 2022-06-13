@@ -12,36 +12,41 @@
   </mat-form-field>
 </form>
 
-<mat-list>
-  <mat-list-item
-    *ngFor="
-      let item of list
-        | filter: phrase:filterKey
-        | sorter: sorterKey:sorterDirection
-    "
+<mat-list role="list">
+  <cdk-virtual-scroll-viewport
+    itemSize="50"
+    class="simplelist-viewport"
   >
-    <h3 matLine>
-      <span
-        *ngIf="item.songs"
-        matBadge="{{ item.songs.length }}"
-        matBadgePosition="after"
-        matBadgeOverlap="false"
-        >&nbsp;</span
-      >
-      <span
-        *ngIf="item.name"
-        (click)="update($event)"
-        id="{{ item._id }}"
-        class="item-name"
-        >{{ item.name }}</span
-      >
-      <span
-        *ngIf="item.title"
-        (click)="update($event)"
-        id="{{ item._id }}"
-        class="item-title"
-        >{{ item.title }}</span
-      >
-    </h3>
-  </mat-list-item>
+    <mat-list-item
+      *cdkVirtualFor="
+        let item of list
+          | filter: phrase:filterKey
+          | sorter: sorterKey:sorterDirection
+      "
+    >
+      <h3 matLine>
+        <span
+          *ngIf="item.songs"
+          matBadge="{{ item.songs.length }}"
+          matBadgePosition="after"
+          matBadgeOverlap="false"
+          >&nbsp;</span
+        >
+        <span
+          *ngIf="item.name"
+          (click)="update($event)"
+          id="{{ item._id }}"
+          class="item-name"
+          >{{ item.name }}</span
+        >
+        <span
+          *ngIf="item.title"
+          (click)="update($event)"
+          id="{{ item._id }}"
+          class="item-title"
+          >{{ item.title }}</span
+        >
+      </h3>
+    </mat-list-item>
+  </cdk-virtual-scroll-viewport>
 </mat-list>

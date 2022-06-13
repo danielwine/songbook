@@ -20,7 +20,7 @@ export class ConfigService {
     { link: '/lyricists', title: 'Szövegírók', icon: 'edit2' },
     { link: '/composers', title: 'Zeneszerzők', icon: 'edit2' },
 
-    { link: '/logout', title: 'Kijelentkezés', icon: 'edit2' },
+    { link: '/login', title: 'Bejelentkezés', icon: 'edit2' },
   ];
   constructor() {}
 }

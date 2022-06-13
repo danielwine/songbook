@@ -14,6 +14,10 @@
   left: 0px;
 }
 
+.text-inside-grid-colspan2 {
+  width: 62%;
+}
+
 .lyrics-container {
   border-left: solid 1px lightgrey;
 }
@@ -22,4 +26,14 @@
   position: absolute;
   top: 15px;
   left: 30px;
+}
+
+.example-viewport {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
+}
+
+.example-item {
+  height: 50px;
 }

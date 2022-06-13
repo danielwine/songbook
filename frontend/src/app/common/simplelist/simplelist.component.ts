@@ -10,9 +10,9 @@ export class SimplelistComponent<T> implements OnInit {
   @Input() entityName = '';
   @Input() example = '';
   @Input() sorterKey = 'name';
+  @Input() filterKey = 'name';
   @Output() updateRequest = new EventEmitter();
   phrase = '';
-  filterKey = 'name';
   sorterDirection = 1;
   constructor() {}
 

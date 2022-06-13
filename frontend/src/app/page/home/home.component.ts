@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+
 import { filter, map, Observable, of, tap } from 'rxjs';
 import { Artist } from 'src/app/model/artist';
 import { Song } from 'src/app/model/song';
@@ -9,12 +10,14 @@ import { SongService } from 'src/app/service/song.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   artists$: Observable<Artist[]> = this.artistService.getAll();
   songs$: Observable<Song[]> = this.songService.getAll();
   visibleSongs$ = this.songs$;
   currentSong = new Song();
+  items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
 
   constructor(
     private artistService: ArtistService,
@@ -41,13 +44,15 @@ export class HomeComponent implements OnInit {
       console.log(item);
 
       this.currentSong = item;
-      console.log(this.currentSong);
     });
   }
 
   ngOnInit(): void {
     this.songs$.subscribe((items) => {
-      this.currentSong = items[Math.floor(Math.random() * items.length)];
+      let songId = items[Math.floor(Math.random() * items.length)]._id;
+      this.songService
+        .getItem(songId.toString())
+        .subscribe((item) => (this.currentSong = item));
     });
   }
 }

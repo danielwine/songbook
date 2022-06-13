@@ -17,17 +17,20 @@
       <app-simplelist
         [list]="artists$ | async"
         entityName="Előadó"
+        friendlyName="artist"
         example="Illés"
         (updateRequest)="updateSongList($event)"
       ></app-simplelist>
     </div>
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
-    <div class="text-inside-grid">
+    <div class="text-inside-grid text-inside-grid-colspan2">
       <app-simplelist
         [list]="visibleSongs$ | async"
         entityName="Dal"
+        friendlyName="song"
         example="Gyöngyhajú lány"
+        filterKey="title"
         sorterKey="title"
         (updateRequest)="updateLyrics($event)"
       ></app-simplelist>
