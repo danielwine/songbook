@@ -1,6 +1,6 @@
 <div class="main" fxLayout="column" fxFlexFill>
   <mat-toolbar class="app-toolbar mat-elevation-z6" color="primary">
-    <mat-toolbar-row fxFlexOffset.gt-md="10%">
+    <mat-toolbar-row fxFlexOffset.gt-md="0%">
       <button
         mat-icon-button
         fxShow="true"
@@ -27,6 +27,12 @@
           {{ item.title }}
         </a>
       </div>
+      <div fxFlex fxShow="true" fxHide.lt-md="true" fxLayoutAlign="end start">
+        <a class="login-link" [routerLink]="login.link" mat-button>
+          <mat-icon *ngIf="login.icon">{{ login.icon }}</mat-icon>
+          {{ login.title }}</a
+        >
+      </div>
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -43,6 +49,11 @@
           <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
           {{ item.title }}
         </a>
+        <hr mat-list-item />
+        <a [routerLink]="login.link" mat-list-item>
+          <mat-icon *ngIf="login.icon">{{ login.icon }}</mat-icon>
+          {{ login.title }}</a
+        >
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>

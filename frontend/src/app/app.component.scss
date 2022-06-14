@@ -3,12 +3,20 @@
   z-index: 2;
 }
 
+.home-link {
+  margin-top: 0.8em;
+}
+
+.login-link {
+  margin-right: 1.5em;
+}
+
 .sidenav-container {
   z-index: 1;
 }
 
-.home-link {
-  margin-top: 0.8em;
+.mat-sidenav {
+  width: 14em;
 }
 
 .mat-sidenav-content {
@@ -25,6 +33,16 @@ a[mat-button] {
   &.active {
     color: white;
   }
+}
+
+@media screen and (max-width: 768px) {
+  .mat-icon {
+    padding: 0.4em;
+  }
+}
+
+hr {
+  color: lightgray;
 }
 
 .lyrics {

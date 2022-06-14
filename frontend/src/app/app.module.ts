@@ -13,13 +13,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 
-import { HeaderComponent } from './common/header/header.component';
 import { HomeComponent } from './page/home/home.component';
 
 import { FilterPipe } from './pipe/filter.pipe';
@@ -36,7 +36,6 @@ import { UserEditComponent } from './page/user-edit/user-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     HomeComponent,
     FilterPipe,
     SorterPipe,
@@ -58,6 +57,7 @@ import { UserEditComponent } from './page/user-edit/user-edit.component';
     MatGridListModule,
     MatToolbarModule,
     MatIconModule,
+    MatCardModule,
     MatButtonModule,
     MatListModule,
     MatFormFieldModule,

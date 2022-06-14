@@ -12,20 +12,17 @@ export interface IMenuItem {
 export class ConfigService {
   apiUrl = 'http://localhost:3000';
   toolbarMenu: IMenuItem[] = [
-    { link: '/songs', title: 'Dalok', icon: 'home' },
-    { link: '/albums', title: 'Albumok', icon: 'archive' },
-    { link: '/artists', title: 'Előadók', icon: 'edit2' },
-    { link: '/lyricists', title: 'Szövegírók', icon: 'edit2' },
-    { link: '/composers', title: 'Zeneszerzők', icon: 'edit2' },
-    { link: '/login', title: 'Bejelentkezés', icon: 'edit2' },
+    { link: '/songs', title: 'Dalok', icon: 'library_music' },
+    { link: '/albums', title: 'Albumok', icon: 'album' },
+    { link: '/artists', title: 'Előadók', icon: 'face6' },
+    { link: '/lyricists', title: 'Szövegírók', icon: 'edit_note' },
+    { link: '/composers', title: 'Zeneszerzők', icon: 'music_note' },
   ];
-  sidebarMenu: IMenuItem[] = [
-    { link: '/songs', title: 'Dalok', icon: 'home' },
-    { link: '/albums', title: 'Albumok', icon: 'archive' },
-    { link: '/artists', title: 'Előadók', icon: 'edit2' },
-    { link: '/lyricists', title: 'Szövegírók', icon: 'edit2' },
-    { link: '/composers', title: 'Zeneszerzők', icon: 'edit2' },
-    { link: '/login', title: 'Bejelentkezés', icon: 'edit2' },
-  ];
+  sidebarMenu = this.toolbarMenu;
+  loginItem: IMenuItem = {
+    link: '/login',
+    title: 'Bejelentkezés',
+    icon: 'login',
+  };
   constructor() {}
 }

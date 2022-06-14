@@ -13,6 +13,7 @@ export class AppComponent {
   title = 'campfire';
   sidebar: IMenuItem[] = this.config.sidebarMenu;
   menu: IMenuItem[] = this.config.toolbarMenu;
+  login: IMenuItem = this.config.loginItem;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
