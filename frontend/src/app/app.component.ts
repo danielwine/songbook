@@ -12,6 +12,7 @@ import { ConfigService, IMenuItem } from './service/config.service';
 export class AppComponent {
   title = 'campfire';
   sidebar: IMenuItem[] = this.config.sidebarMenu;
+  menu: IMenuItem[] = this.config.toolbarMenu;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)

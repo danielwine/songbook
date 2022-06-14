@@ -1,44 +1,34 @@
-<!-- <mat-list>
-  <mat-list-item *ngFor="let message of messages">
-    <h3 matLine>
-      {{ message.from }}
-      <span matBadge="4" matBadgeOverlap="false">&nbsp;</span>
-    </h3>
-    <p matLine>{{ message.subject }}</p>
-    <p matLine class="demo-2" matBadge="4" matBadgeOverlap="false">
-      {{ message.content }}
-    </p>
-  </mat-list-item>
-</mat-list> -->
-
-<mat-grid-list cols="8" rowHeight="1:4">
-  <mat-grid-tile colspan="1">
-    <div class="text-inside-grid">
-      <app-simplelist
-        [list]="artists$ | async"
-        entityName="Előadó"
-        friendlyName="artist"
-        example="Illés"
-        (updateRequest)="updateSongList($event)"
-      ></app-simplelist>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <div class="text-inside-grid text-inside-grid-colspan2">
-      <app-simplelist
-        [list]="visibleSongs$ | async"
-        entityName="Dal"
-        friendlyName="song"
-        example="Gyöngyhajú lány"
-        filterKey="title"
-        sorterKey="title"
-        (updateRequest)="updateLyrics($event)"
-      ></app-simplelist>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile class="lyrics-container" colspan="3">
-    <div class="lyrics">
-      <app-lyrics [song]="currentSong"></app-lyrics>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
+<div
+  class="component-container"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutGap.gt-md="100px"
+>
+  <div
+    fxLayout
+    fxLayout.xs="column"
+    fxFlex.gt-lg="30%"
+    fxFlexOffset.gt-md="10%"
+    fxLayoutGap.gt-md="30px"
+  >
+    <app-simplelist
+      fxFlex.gt-lg="40%"
+      [list]="artists$ | async"
+      entityName="Előadó"
+      friendlyName="artist"
+      example="Illés"
+      (updateRequest)="updateSongList($event)"
+    ></app-simplelist>
+    <app-simplelist
+      fxFlex.gt-lg="60%"
+      [list]="visibleSongs$ | async"
+      entityName="Dal"
+      friendlyName="song"
+      example="Gyöngyhajú lány"
+      filterKey="title"
+      sorterKey="title"
+      (updateRequest)="updateLyrics($event)"
+    ></app-simplelist>
+  </div>
+  <app-lyrics [song]="currentSong"></app-lyrics>
+</div>

@@ -11,15 +11,20 @@ export interface IMenuItem {
 })
 export class ConfigService {
   apiUrl = 'http://localhost:3000';
-  sidebarMenu: IMenuItem[] = [
-    { link: '/', title: 'Kezdőoldal', icon: 'home' },
-
+  toolbarMenu: IMenuItem[] = [
     { link: '/songs', title: 'Dalok', icon: 'home' },
     { link: '/albums', title: 'Albumok', icon: 'archive' },
     { link: '/artists', title: 'Előadók', icon: 'edit2' },
     { link: '/lyricists', title: 'Szövegírók', icon: 'edit2' },
     { link: '/composers', title: 'Zeneszerzők', icon: 'edit2' },
-
+    { link: '/login', title: 'Bejelentkezés', icon: 'edit2' },
+  ];
+  sidebarMenu: IMenuItem[] = [
+    { link: '/songs', title: 'Dalok', icon: 'home' },
+    { link: '/albums', title: 'Albumok', icon: 'archive' },
+    { link: '/artists', title: 'Előadók', icon: 'edit2' },
+    { link: '/lyricists', title: 'Szövegírók', icon: 'edit2' },
+    { link: '/composers', title: 'Zeneszerzők', icon: 'edit2' },
     { link: '/login', title: 'Bejelentkezés', icon: 'edit2' },
   ];
   constructor() {}

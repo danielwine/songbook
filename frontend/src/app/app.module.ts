@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -52,6 +53,7 @@ import { UserEditComponent } from './page/user-edit/user-edit.component';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     ScrollingModule,
     MatGridListModule,
     MatToolbarModule,
