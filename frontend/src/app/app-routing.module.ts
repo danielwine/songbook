@@ -28,7 +28,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'composer',
+    path: 'composers',
     component: HomeComponent,
   },
   {

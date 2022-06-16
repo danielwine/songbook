@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -19,6 +19,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HomeComponent } from './page/home/home.component';
 
@@ -32,6 +33,8 @@ import { ForbiddenComponent } from './page/forbidden/forbidden.component';
 import { LoginComponent } from './page/login/login.component';
 import { UsersComponent } from './page/users/users.component';
 import { UserEditComponent } from './page/user-edit/user-edit.component';
+import { JwtInterceptor } from './service/jwt.interceptor';
+import { AuthService } from './service/auth.service';
 
 @NgModule({
   declarations: [
@@ -63,10 +66,18 @@ import { UserEditComponent } from './page/user-edit/user-edit.component';
     MatFormFieldModule,
     MatInputModule,
     MatBadgeModule,
+    MatSnackBarModule,
     LayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      deps: [AuthService],
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

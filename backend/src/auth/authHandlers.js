@@ -27,7 +27,8 @@ module.exports.login = async (req, res, next) => {
         res.json({
             success: true,
             accessToken,
-            refreshToken
+            refreshToken,
+            user: { ...user._doc, password: '' }
         });
     } else {
         return next(new createError.Unauthorized(msgIncorrect))

@@ -1,33 +1,40 @@
 <div class="login-container" fxLayout fxLayoutAlign="center center">
-  <mat-card fxFlex.gt-sm="20%" fxFlex.lt-sm="80%">
+  <mat-card class="login" fxFlex.gt-sm="20%" fxFlex.lt-sm="80%">
     <mat-card-title>Bejelentkezés</mat-card-title>
 
     <mat-card-content fxLayout="column">
-      <mat-form-field>
-        <input
-          placeholder="Felhasználói név"
-          matInput
-          name="usename"
-          [(ngModel)]="username"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          placeholder="Jelszó"
-          matInput
-          value=""
-          name="password"
-          type="password"
-          [(ngModel)]="password"
-        />
-      </mat-form-field>
+      <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+        <mat-form-field>
+          <input
+            placeholder="Felhasználói név"
+            matInput
+            name="username"
+            [(ngModel)]="loginData.username"
+            required
+            autofocus
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            placeholder="Jelszó"
+            matInput
+            value=""
+            name="password"
+            type="password"
+            [(ngModel)]="loginData.password"
+            required
+          />
+        </mat-form-field>
+        <hr style="opacity: 0">
+        <button
+          [disabled]="!loginForm.form.valid"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Belépés
+        </button>
+      </form>
     </mat-card-content>
-
-    <button mat-raised-button color="primary" (click)="submit()">
-      Belépés
-    </button>
-    <span *ngIf="show">
-      <button mat-button color="accent">Sikeres bejelentkezés.</button></span
-    >
   </mat-card>
 </div>

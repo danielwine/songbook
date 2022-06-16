@@ -24,5 +24,10 @@ export class ConfigService {
     title: 'Bejelentkezés',
     icon: 'login',
   };
+  logoutItem: IMenuItem = {
+    link: '/logout',
+    title: 'Kijelentkezés',
+    icon: 'logout',
+  };
   constructor() {}
 }

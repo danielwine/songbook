@@ -29,9 +29,19 @@
       </div>
       <div fxFlex fxShow="true" fxHide.lt-md="true" fxLayoutAlign="end start">
         <a class="login-link" [routerLink]="login.link" mat-button>
-          <mat-icon *ngIf="login.icon">{{ login.icon }}</mat-icon>
-          {{ login.title }}</a
-        >
+          <span *ngIf="!(user$ | async)">
+            {{ login.title }}
+            <mat-icon class="login-item" *ngIf="login.icon">
+              {{ login.icon }}</mat-icon
+            >
+          </span>
+          <span *ngIf="user$ | async">
+            {{ logout.title }}
+            <mat-icon class="login-item" *ngIf="logout.icon">
+              {{ logout.icon }}</mat-icon
+            >
+          </span>
+        </a>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

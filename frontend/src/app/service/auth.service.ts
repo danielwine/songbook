@@ -1,67 +1,74 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../model/user';
-import { ConfigService } from './config.service';
-import { UserService } from './user.service';
+
+export interface IAuthModel {
+  success: boolean;
+  accessToken: string;
+  refreshToken: string;
+  user: User;
+}
+
+export interface ILoginData {
+  username?: string;
+  password?: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  loginUrl = `${this.config.apiUrl}login`;
-  logoutUrl = `${this.config.apiUrl}logout`;
-  currentUserSubject$: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>(null);
-  lastToken: string = '';
-  storageName = 'currentUser';
+  apiUrl = environment.apiBaseUrl;
+  loginUrl: string = '';
+  user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  access_token$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  error$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
-    private config: ConfigService,
     private http: HttpClient,
-    private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+  ) {
+    this.loginUrl = `${this.apiUrl}login`;
 
-  get currentUserValue(): User {
-    return this.currentUserSubject$.value
-      ? this.currentUserSubject$.value
-      : new User();
+    const loginInfo = sessionStorage.getItem('login');
+    if (loginInfo) {
+      const loginObject = JSON.parse(loginInfo);
+      this.access_token$.next(loginObject.accessToken);
+      this.user$.next(loginObject.user);
+    }
+
+    this.user$.subscribe({
+      next: (user) => {
+        console.log(user);
+        if (user) {
+          this.router.navigate(['/', 'songs']);
+        } else {
+          this.access_token$.next('');
+          sessionStorage.removeItem('login');
+        }
+      },
+    });
   }
 
-  login(loginData: User): Observable<any> {
-    return this.http
-      .post<{ accessToken: string }>(this.loginUrl, {
-        email: loginData.email,
-        password: loginData.password,
-      })
-      .pipe(
-        switchMap((response) => {
-          if (response.accessToken) {
-            this.lastToken = response.accessToken;
-            return this.userService.query(`email=${loginData.email}`);
-          }
-          return of(null);
-        })
-      )
-      .pipe(
-        tap((user) => {
-          if (!user) {
-            localStorage.removeItem(this.storageName);
-            this.currentUserSubject$.next(null);
-          } else {
-            user[0].token = this.lastToken;
-            localStorage.setItem(this.storageName, JSON.stringify(user[0]));
-            this.currentUserSubject$.next(user[0]);
-          }
-        })
-      );
+  login(loginData: ILoginData): void {
+    this.http.post<IAuthModel>(this.loginUrl, loginData).subscribe({
+      next: (response: IAuthModel) => {
+        this.user$.next(response.user);
+        this.access_token$.next(response.accessToken);
+        sessionStorage.setItem('login', JSON.stringify(response));
+        this.error$.next('');
+      },
+      error: (err) => {
+        console.error(err);
+        this.error$.next(err);
+      },
+    });
   }
 
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject$.next(null);
-    this.router.navigate(['/', 'login']);
+  logout(): void {
+    this.user$.next(null);
   }
 }

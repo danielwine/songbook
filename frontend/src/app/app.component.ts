@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ConfigService, IMenuItem } from './service/config.service';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent {
   sidebar: IMenuItem[] = this.config.sidebarMenu;
   menu: IMenuItem[] = this.config.toolbarMenu;
   login: IMenuItem = this.config.loginItem;
+  logout: IMenuItem = this.config.logoutItem;
+  user$ = this.auth.user$;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -24,6 +27,7 @@ export class AppComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private config: ConfigService
+    private config: ConfigService,
+    private auth: AuthService
   ) {}
 }
