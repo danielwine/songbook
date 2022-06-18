@@ -8,8 +8,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+// Material Components
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,6 +22,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { DataTableModule} from './common/data-table/data-table.module'
 
 import { HomeComponent } from './page/home/home.component';
 
@@ -35,6 +39,11 @@ import { UsersComponent } from './page/users/users.component';
 import { UserEditComponent } from './page/user-edit/user-edit.component';
 import { JwtInterceptor } from './service/jwt.interceptor';
 import { AuthService } from './service/auth.service';
+import { SongComponent } from './page/song/song.component';
+import { AlbumComponent } from './page/album/album.component';
+import { ArtistComponent } from './page/artist/artist.component';
+import { LyricistComponent } from './page/lyricist/lyricist.component';
+import { ComposerComponent } from './page/composer/composer.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +57,11 @@ import { AuthService } from './service/auth.service';
     LoginComponent,
     UsersComponent,
     UserEditComponent,
+    SongComponent,
+    AlbumComponent,
+    ArtistComponent,
+    LyricistComponent,
+    ComposerComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +71,7 @@ import { AuthService } from './service/auth.service';
     BrowserAnimationsModule,
     FlexLayoutModule,
     ScrollingModule,
+    DataTableModule,
     MatGridListModule,
     MatToolbarModule,
     MatIconModule,

@@ -1,0 +1,8 @@
+<h2>Előadók adatai</h2>
+
+<app-mat-data-table
+  *ngIf="list$ | async as list"
+  [columns]="columns"
+  [list]="list"
+>
+</app-mat-data-table>
