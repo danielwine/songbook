@@ -12,4 +12,7 @@ const populateAll = cursor => cursor
 concreteService.findOne = (id) =>
     populateAll(Song.find({ _id: id }))
 
+concreteService.findAll = () =>
+    populateAll(Song.find({}, { lyrics: 0 }))
+
 module.exports = concreteService;

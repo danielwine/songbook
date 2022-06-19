@@ -1,15 +1,18 @@
 const express = require("express");
-const songService = require('../song/service');
-const controller = require('../base/controller')(songService);
+const controller = require('./controller');
 
 const router = express.Router();
 
 router.post('/', (req, res, next) => {
     return controller.create(req, res, next);
-  });
+});
 
 router.get('/', (req, res, next) => {
     return controller.findAll(req, res, next);
+});
+
+router.get('/ids', (req, res, next) => {
+    return controller.findAllIds(req, res, next);
 });
 
 router.get('/:id', (req, res, next) => {

@@ -8,4 +8,7 @@ const populateAll = cursor => cursor
 concreteService.findOne = (id) =>
     populateAll(Genre.find({ _id: id }))
 
+concreteService.findAll = () =>
+    populateAll(Genre.find({}))
+
 module.exports = concreteService;

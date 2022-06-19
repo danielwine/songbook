@@ -13,8 +13,9 @@ module.exports = (model) => {
             const item = new model(itemData);
             return item.save();
         },
-        findAll: () => model.find({}, { lyrics: 0 }),
         findOne: (id) => model.find({ _id: id }),
+        findAllIds: () =>
+            model.find({}, { lyrics: 0 }),
         findItemIdByName: (itemName) => {
             const result = model.find({ name: itemName });
             if (!result) return null;

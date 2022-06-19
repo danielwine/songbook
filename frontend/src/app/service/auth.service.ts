@@ -42,7 +42,6 @@ export class AuthService {
 
     this.user$.subscribe({
       next: (user) => {
-        console.log(user);
         if (user) {
           this.router.navigate(['/', 'songs']);
         } else {

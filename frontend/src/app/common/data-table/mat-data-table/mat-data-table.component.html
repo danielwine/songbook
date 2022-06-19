@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="list" class="mat-elevation-z8">
   <ng-container *ngFor="let col of columns" [matColumnDef]="col.key">
     <th mat-header-cell *matHeaderCellDef>{{ col.title | titlecase }}</th>
-    <td mat-cell *matCellDef="let item">{{ item[col.key] }}</td>
+    <td mat-cell *matCellDef="let item">{{ renderItem(item, col) }}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="getColumnKeys(columns)"></tr>
   <tr mat-row *matRowDef="let row; columns: getColumnKeys(columns)"></tr>

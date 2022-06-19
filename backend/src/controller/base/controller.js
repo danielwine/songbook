@@ -28,8 +28,8 @@ module.exports = (service) => {
                 .catch(reason => next(
                     new createError.InternalServerError(reason.message)));
         },
-        findAll: (req, res, next) => {
-            return service.findAll()
+        findAllIds: (req, res, next) => {
+            return service.findAllIds()
                 .then(list => res.json(list))
         },
         findOne: (req, res, next) => {

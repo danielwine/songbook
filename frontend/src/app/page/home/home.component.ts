@@ -13,8 +13,8 @@ import { SongService } from 'src/app/service/song.service';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  artists$: Observable<Artist[]> = this.artistService.getAll();
-  songs$: Observable<Song[]> = this.songService.getAll();
+  artists$: Observable<Artist[]> = this.artistService.getAllIds();
+  songs$: Observable<Song[]> = this.songService.getAllIds();
   visibleSongs$ = this.songs$;
   currentSong = new Song();
   items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   updateSongList(event: Event) {
     this.artists$.subscribe((artists) => {
       const artist = artists.find((item) => item._id === event.toString());
-      console.log(artist?.songs);
       if (artist && artist.songs)
         this.visibleSongs$ = this.songs$.pipe(
           map((songs) =>
@@ -41,8 +40,6 @@ export class HomeComponent implements OnInit {
 
   updateLyrics(event: Event) {
     this.songService.getItem(event.toString()).subscribe((item: Song) => {
-      console.log(item);
-
       this.currentSong = item;
     });
   }

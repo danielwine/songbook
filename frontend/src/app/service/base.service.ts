@@ -25,9 +25,11 @@ export class BaseService<T extends { _id: number | string }> {
   }
 
   getAll(): Observable<T[]> {
-    console.log(this.apiFullUrl);
-
     return this.http.get<T[]>(this.apiFullUrl);
+  }
+
+  getAllIds(): Observable<T[]> {
+    return this.http.get<T[]>(this.apiFullUrl + '/ids');
   }
 
   getItem(id: string): Observable<T> {
