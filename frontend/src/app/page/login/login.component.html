@@ -1,7 +1,9 @@
 <div class="login-container" fxLayout fxLayoutAlign="center center">
   <mat-card class="login" fxFlex.gt-sm="20%" fxFlex.lt-sm="80%">
     <mat-card-title>Bejelentkezés</mat-card-title>
-
+    <h4>
+      Csak bejelentkezett felhasználóként tudja szerkeszteni az adatbázist.
+    </h4>
     <mat-card-content fxLayout="column">
       <form #loginForm="ngForm" (ngSubmit)="onLogin()">
         <mat-form-field>
@@ -25,7 +27,7 @@
             required
           />
         </mat-form-field>
-        <hr style="opacity: 0">
+        <hr style="opacity: 0" />
         <button
           [disabled]="!loginForm.form.valid"
           mat-raised-button

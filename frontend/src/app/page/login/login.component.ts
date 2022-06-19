@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { AuthService, ILoginData } from 'src/app/service/auth.service';
 
 @Component({
@@ -12,8 +11,7 @@ export class LoginComponent implements OnInit {
   loginData: ILoginData = {};
 
   constructor(
-    private auth: AuthService,
-    private router: Router,
+    public auth: AuthService,
     public snackBar: MatSnackBar
   ) {}
 

@@ -44,8 +44,8 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['list']);
-
+    // console.log(changes['list']);
+    // this.list = changes['list'].currentValue
 
   }
 }

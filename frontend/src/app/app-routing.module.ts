@@ -10,6 +10,7 @@ import { LyricistComponent } from './page/lyricist/lyricist.component';
 import { SongComponent } from './page/song/song.component';
 import { UserEditComponent } from './page/user-edit/user-edit.component';
 import { UsersComponent } from './page/users/users.component';
+import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,22 +20,27 @@ const routes: Routes = [
   {
     path: 'songs',
     component: SongComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'albums',
     component: AlbumComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'artists',
     component: ArtistComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'lyricists',
     component: LyricistComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'composers',
     component: ComposerComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "login",
