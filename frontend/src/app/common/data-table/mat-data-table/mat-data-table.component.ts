@@ -1,4 +1,14 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface IMatTableColumn {
   title: string;
@@ -13,6 +23,13 @@ export interface IMatTableColumn {
 export class MatDataTableComponent<T extends { [x: string]: any }>
   implements OnInit, OnChanges
 {
+  dataSource = new MatTableDataSource<T>();
+  pageSizes: number[] = [20, 40, 60];
+  @ViewChild(MatPaginator, { static: true }) paginator = new MatPaginator(
+    new MatPaginatorIntl(),
+    ChangeDetectorRef.prototype
+  );
+
   @Input() list: T[] = [];
   @Input() columns: IMatTableColumn[] = [];
 
@@ -42,10 +59,10 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log(changes['list']);
-    // this.list = changes['list'].currentValue
-
+    this.dataSource.data = changes['list'].currentValue;
   }
 }
