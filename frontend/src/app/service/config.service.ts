@@ -33,31 +33,31 @@ export class ConfigService {
   };
 
   songTableColumns: IMatTableColumn[] = [
-    { key: '_id', title: '#' },
+    // { key: '_id', title: '#' },
     { key: 'title', title: 'Cím' },
     { key: 'artist', title: 'Előadó' },
     { key: 'album', title: 'Album' },
     { key: 'x_genre', title: 'Műfaj' },
   ];
   artistTableColumns: IMatTableColumn[] = [
-    { key: '_id', title: '#' },
+    // { key: '_id', title: '#' },
     { key: 'name', title: 'Név' },
     { key: 'songs', title: 'Dalok' },
   ];
   albumTableColumns: IMatTableColumn[] = [
-    { key: '_id', title: '#' },
+    // { key: '_id', title: '#' },
     { key: 'name', title: 'Cím' },
     { key: 'songs', title: 'Dalok' },
     { key: 'year', title: 'Megjelenési év' },
   ];
   lyricistTableColumns: IMatTableColumn[] = [
-    { key: '_id', title: '#' },
-    { key: 'name', title: 'Cím' },
+    // { key: '_id', title: '#' },
+    { key: 'name', title: 'Név' },
     { key: 'songs', title: 'Dalok' },
   ];
   composerTableColumns: IMatTableColumn[] = [
-    { key: '_id', title: '#' },
-    { key: 'name', title: 'Cím' },
+    // { key: '_id', title: '#' },
+    { key: 'name', title: 'Név' },
     { key: 'songs', title: 'Dalok' },
   ];
 

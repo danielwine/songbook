@@ -1,3 +1,23 @@
+<mat-form-field>
+  <mat-label>Mező</mat-label>
+  <mat-select [(ngModel)]="currentFilterKey">
+    <mat-option [value]="''">Összes mező</mat-option>
+    <mat-option *ngFor="let col of columns" [value]="col.key">
+      {{ col.title }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Szűrő</mat-label>
+  <input
+    matInput
+    type="text"
+    (keyup)="applyFilter($event)"
+    placeholder="keresés"
+  />
+</mat-form-field>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container *ngFor="let col of columns" [matColumnDef]="col.key">
     <th mat-header-cell *matHeaderCellDef>{{ col.title | titlecase }}</th>
@@ -7,8 +27,9 @@
   <tr mat-row *matRowDef="let row; columns: getColumnKeys(columns)"></tr>
 </table>
 <mat-paginator
-  [length]="60"
-  [pageSizeOptions]="pageSizes"
-  [showFirstLastButtons]
+[length]="60"
+[pageSizeOptions]="pageSizes"
+[showFirstLastButtons]
 >
 </mat-paginator>
+

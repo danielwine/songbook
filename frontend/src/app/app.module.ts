@@ -22,23 +22,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-import { DataTableModule} from './common/data-table/data-table.module'
-
-import { HomeComponent } from './page/home/home.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { JwtInterceptor } from './service/jwt.interceptor';
+import { AuthService } from './service/auth.service';
+
+import { DataTableModule} from './common/data-table/data-table.module'
+
+// Components
+
+import { HomeComponent } from './page/home/home.component';
 import { SimplelistComponent } from './common/simplelist/simplelist.component';
 import { LyricsComponent } from './common/lyrics/lyrics.component';
 import { ForbiddenComponent } from './page/forbidden/forbidden.component';
 import { LoginComponent } from './page/login/login.component';
 import { UsersComponent } from './page/users/users.component';
 import { UserEditComponent } from './page/user-edit/user-edit.component';
-import { JwtInterceptor } from './service/jwt.interceptor';
-import { AuthService } from './service/auth.service';
 import { SongComponent } from './page/song/song.component';
 import { AlbumComponent } from './page/album/album.component';
 import { ArtistComponent } from './page/artist/artist.component';
@@ -82,7 +83,6 @@ import { ComposerComponent } from './page/composer/composer.component';
     MatInputModule,
     MatBadgeModule,
     MatSnackBarModule,
-    LayoutModule,
     MatSidenavModule,
   ],
   providers: [
