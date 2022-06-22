@@ -4,9 +4,10 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "start": "node src/index.js",
     "seeder": "node src/seed.js",
-    "server": "node src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "cd ../frontend && ng build && rm -r -f ./backend/public && cp -r ./dist/frontend ../backend/public && cd ../backend && sudo docker-compose up"
   },
   "author": "danielwine",
   "license": "ISC",
