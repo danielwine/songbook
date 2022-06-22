@@ -1,6 +1,33 @@
 openapi: 3.0.0
 info:
   version: 0.1.0
-  title: songbook-api-server
+  title: songbook-api-server documentation
+  description: a vizsgaremek végpontjainak használata
 servers:
   - url: http://localhost:3000
+paths:
+  /song:
+    get:
+      description: returns a list of all songs (populated, without lyrics)
+
+responses:
+  '200':
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '#components/schemas/Song'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Song:
+      type: object
+      required:
+        - title
+
