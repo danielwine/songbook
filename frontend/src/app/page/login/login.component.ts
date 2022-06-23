@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MessageService } from 'src/app/dialog/service/message.service';
 import { AuthService, ILoginData } from 'src/app/service/auth.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public messageService: MessageService
   ) {}
 
   onLogin() {
@@ -25,9 +27,7 @@ export class LoginComponent implements OnInit {
     this.auth.error$.subscribe({
       next: (error) => {
         if (error)
-          this.snackBar.open('Hibás felhasználónév vagy jelszó!', '', {
-            duration: 2000,
-          });
+          this.messageService.showMessage('Hibás felhasználónév vagy jelszó!');
       },
     });
   }

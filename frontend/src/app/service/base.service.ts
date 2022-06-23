@@ -40,7 +40,7 @@ export class BaseService<T extends { _id: number | string }> {
     return this.http.patch<T>(this.apiFullUrl + '/' + item._id, item);
   }
 
-  deleteItem(id: number): Observable<any> {
-    return this.http.delete<T>(this.apiFullUrl + '/' + id.toString());
+  deleteItem(id: string): Observable<any> {
+    return this.http.delete<T>(this.apiFullUrl + '/' + id);
   }
 }

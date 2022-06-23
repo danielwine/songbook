@@ -12,11 +12,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'
 
-import { MatAutocompleteModule } from '@angular/material/autocomplete'
-import { MatSlideToggleModule } from '@angular/material/slide-toggle'
-import { MatDialogModule } from '@angular/material/dialog'
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-
 @NgModule({
   declarations: [MatDataTableComponent],
   imports: [
@@ -29,10 +24,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatIconModule,
     MatButtonModule,
-    MatAutocompleteModule,
-    MatSlideToggleModule,
-    MatDialogModule,
-    MatSnackBarModule
   ],
   exports: [MatDataTableComponent],
 })

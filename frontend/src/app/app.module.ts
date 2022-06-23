@@ -29,7 +29,10 @@ import { SorterPipe } from './pipe/sorter.pipe';
 import { JwtInterceptor } from './service/jwt.interceptor';
 import { AuthService } from './service/auth.service';
 
+// Modules
+
 import { DataTableModule} from './common/data-table/data-table.module'
+import { DialogModule} from './dialog/dialog.module';
 
 // Components
 
@@ -73,6 +76,7 @@ import { ComposerComponent } from './page/composer/composer.component';
     FlexLayoutModule,
     ScrollingModule,
     DataTableModule,
+    DialogModule,
     MatGridListModule,
     MatToolbarModule,
     MatIconModule,

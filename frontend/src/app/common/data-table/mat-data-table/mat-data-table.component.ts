@@ -12,6 +12,8 @@ import {
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
+import { MessageService } from 'src/app/dialog/service/message.service';
 import { SorterPipe } from 'src/app/pipe/sorter.pipe';
 
 export interface IMatTableColumn {
@@ -75,10 +77,25 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
   }
 
   onDelete(item: T): void {
-    this.requestDelete.emit(item['_id']);
+    console.log('onDelete');
+
+    const dialogData = {
+      title: 'Megerősítés',
+      content: 'Biztosan törli az elemet?',
+    };
+    this.messageService
+      .openDialog(dialogData)
+      .pipe(take(1))
+      .subscribe((result) => {
+        if (!result) return;
+        else this.requestDelete.emit(item['_id']);
+      });
   }
 
-  constructor(private sorterPipe: SorterPipe<T>, private router: Router) {}
+  constructor(
+    private sorterPipe: SorterPipe<T>,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
