@@ -6,9 +6,12 @@ import {
   SimpleChanges,
   ViewChild,
   ChangeDetectorRef,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { SorterPipe } from 'src/app/pipe/sorter.pipe';
 
 export interface IMatTableColumn {
@@ -35,6 +38,8 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
 
   @Input() list: T[] = [];
   @Input() columns: IMatTableColumn[] = [];
+  @Output() requestDelete = new EventEmitter();
+  @Output() requestEdit = new EventEmitter();
 
   getColumnKeys = (columns: IMatTableColumn[]) =>
     columns.map((item) => item.key);
@@ -65,7 +70,15 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(private sorterPipe: SorterPipe<T>) {}
+  onEdit(item: T): void {
+    this.requestEdit.emit(item['_id']);
+  }
+
+  onDelete(item: T): void {
+    this.requestDelete.emit(item['_id']);
+  }
+
+  constructor(private sorterPipe: SorterPipe<T>, private router: Router) {}
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;

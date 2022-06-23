@@ -5,3 +5,12 @@ table, mat-paginator {
 mat-form-field {
   margin-right: 1rem;
 }
+
+.mat-column-actions {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.mat-flat-button {
+  min-width: 3rem;
+}

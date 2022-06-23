@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { MatDataTableComponent } from './mat-data-table/mat-data-table.component';
+
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button'
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [MatDataTableComponent],
@@ -17,7 +26,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   exports: [MatDataTableComponent],
 })

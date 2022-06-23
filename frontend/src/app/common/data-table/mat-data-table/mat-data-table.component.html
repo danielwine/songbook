@@ -2,8 +2,10 @@
   <mat-label>Mező</mat-label>
   <mat-select [(ngModel)]="currentFilterKey">
     <mat-option [value]="''">Összes mező</mat-option>
-    <mat-option *ngFor="let col of columns" [value]="col.key">
-      {{ col.title }}
+    <mat-option *ngFor="let col of columns.slice(0, -1)" [value]="col.key">
+      <span *ngIf="col.title">
+        {{ col.title }}
+      </span>
     </mat-option>
   </mat-select>
 </mat-form-field>
@@ -21,15 +23,28 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container *ngFor="let col of columns" [matColumnDef]="col.key">
     <th mat-header-cell *matHeaderCellDef>{{ col.title | titlecase }}</th>
-    <td mat-cell *matCellDef="let item">{{ renderItem(item, col) }}</td>
+    <td mat-cell *matCellDef="let item">
+      <div *ngIf="col.key !== 'actions'; else actionBlock">
+        {{ renderItem(item, col) }}
+      </div>
+      <ng-template #actionBlock>
+        <div class="mat-btn-group">
+          <button mat-flat-button (click)="onEdit(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-flat-button (click)="onDelete(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </ng-template>
+    </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="getColumnKeys(columns)"></tr>
   <tr mat-row *matRowDef="let row; columns: getColumnKeys(columns)"></tr>
 </table>
 <mat-paginator
-[length]="60"
-[pageSizeOptions]="pageSizes"
-[showFirstLastButtons]
+  [length]="60"
+  [pageSizeOptions]="pageSizes"
+  [showFirstLastButtons]
 >
 </mat-paginator>
-

@@ -18,5 +18,14 @@ export class SongComponent implements OnInit {
     private songService: SongService
   ) {}
 
+  edit(event: Event) {
+    console.log(event);
+  }
+
+  delete(event: Event) {
+    console.log(event);
+    // this.songService.deleteItem(event)
+  }
+
   ngOnInit(): void {}
 }

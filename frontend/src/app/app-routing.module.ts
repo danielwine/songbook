@@ -8,8 +8,6 @@ import { HomeComponent } from './page/home/home.component';
 import { LoginComponent } from './page/login/login.component';
 import { LyricistComponent } from './page/lyricist/lyricist.component';
 import { SongComponent } from './page/song/song.component';
-import { UserEditComponent } from './page/user-edit/user-edit.component';
-import { UsersComponent } from './page/users/users.component';
 import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
@@ -46,14 +44,10 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent,
   },
-  {
-    path: "users",
-    component: UsersComponent,
-  },
-  {
-    path: "users/edit/:id",
-    component: UserEditComponent,
-  },
+  // {
+  //   path: "edit",
+  //   component: MatDataEditorComponent,
+  // },
   {
     path: "forbidden",
     component: ForbiddenComponent,
