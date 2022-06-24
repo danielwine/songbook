@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { SongEditComponent } from 'src/app/dialog/form/song-edit/song-edit.component';
+import { DialogService } from 'src/app/dialog/service/dialog.service';
 import { MessageService } from 'src/app/dialog/service/message.service';
 import { Song } from 'src/app/model/song';
 import { ConfigService } from 'src/app/service/config.service';
@@ -19,20 +21,27 @@ export class SongComponent implements OnInit {
     private config: ConfigService,
     private songService: SongService,
     private messageService: MessageService,
+    private dialogService: DialogService,
     private router: Router
   ) {}
 
-  edit(event: Event) {
-    console.log(event);
+  edit(id: string) {
+    this.songService.getItem(id).subscribe((item) => {
+      if (!item) this.messageService.showFailed();
+      else {
+        this.dialogService.open(SongEditComponent, item);
+      }
+    });
+    console.log(id);
   }
 
   delete(id: string) {
     this.songService.deleteItem(id).subscribe({
       next: (error) => {
         if (error) {
-          this.messageService.showMessage(`Az elem törölve.`);
+          this.messageService.showDeleted();
           this.list$ = this.songService.getAll();
-        } else this.messageService.showMessage('Sikertelen művelet.');
+        } else this.messageService.showFailed();
       },
     });
   }

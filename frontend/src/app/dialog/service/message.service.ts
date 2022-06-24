@@ -18,6 +18,14 @@ export class MessageService {
     return dialogRef.afterClosed();
   }
 
+  showDeleted(): void {
+    this.showMessage('Az elem törölve');
+  }
+
+  showFailed(): void {
+    this.showMessage('Sikertelen művelet');
+  }
+
   showMessage(message: string): void {
     this.snackBar.open(message, '', {
       duration: 3000,
