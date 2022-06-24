@@ -20,11 +20,32 @@
       name="artist"
       placeholder="Előadó"
       [(ngModel)]="data.artist.name"
-      [matAutocomplete]="auto"
+      [matAutocomplete]="autoArtist"
     />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let artist of artists$ | async" [value]="artist.name">
+    <mat-autocomplete #autoArtist="matAutocomplete">
+      <mat-option
+        *ngFor="let artist of artists$ | async | sorter: 'name'"
+        [value]="artist.name"
+      >
         <span>{{ artist.name }}</span></mat-option
+      >
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input
+      type="text"
+      matInput
+      name="album"
+      placeholder="Album"
+      [(ngModel)]="data.album.name"
+      [matAutocomplete]="autoAlbum"
+    />
+    <mat-autocomplete #autoAlbum="matAutocomplete">
+      <mat-option
+        *ngFor="let album of albums$ | async | sorter: 'name'"
+        [value]="album.name"
+      >
+        <span>{{ album.name }}</span></mat-option
       >
     </mat-autocomplete>
   </mat-form-field>

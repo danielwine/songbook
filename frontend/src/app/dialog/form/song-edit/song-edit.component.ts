@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Form } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Song } from 'src/app/model/song';
+import { AlbumService } from 'src/app/service/album.service';
 import { ArtistService } from 'src/app/service/artist.service';
 
 @Component({
@@ -11,10 +12,12 @@ import { ArtistService } from 'src/app/service/artist.service';
 })
 export class SongEditComponent implements OnInit {
   artists$ = this.artistService.getAll()
+  albums$ = this.albumService.getAll()
   constructor(
     public dialogRef: MatDialogRef<SongEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Song,
-    public artistService: ArtistService
+    public artistService: ArtistService,
+    public albumService: AlbumService
   ) {}
 
   onSubmit(form: Form, data: Song): void {}

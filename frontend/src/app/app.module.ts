@@ -24,8 +24,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-import { FilterPipe } from './pipe/filter.pipe';
-import { SorterPipe } from './pipe/sorter.pipe';
 import { JwtInterceptor } from './service/jwt.interceptor';
 import { AuthService } from './service/auth.service';
 
@@ -33,6 +31,9 @@ import { AuthService } from './service/auth.service';
 
 import { DataTableModule} from './common/data-table/data-table.module'
 import { DialogModule} from './dialog/dialog.module';
+import { PipeModule } from './pipe/pipe.module';
+// import { FilterPipe } from './pipe/filter.pipe';
+// import { SorterPipe } from './pipe/sorter.pipe';
 
 // Components
 
@@ -53,8 +54,6 @@ import { ComposerComponent } from './page/composer/composer.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    FilterPipe,
-    SorterPipe,
     SimplelistComponent,
     LyricsComponent,
     ForbiddenComponent,
@@ -66,6 +65,8 @@ import { ComposerComponent } from './page/composer/composer.component';
     ArtistComponent,
     LyricistComponent,
     ComposerComponent,
+    // FilterPipe,
+    // SorterPipe
   ],
   imports: [
     BrowserModule,
@@ -75,6 +76,7 @@ import { ComposerComponent } from './page/composer/composer.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     ScrollingModule,
+    PipeModule,
     DataTableModule,
     DialogModule,
     MatGridListModule,

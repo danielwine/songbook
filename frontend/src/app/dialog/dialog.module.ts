@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { PipeModule } from '../pipe/pipe.module';
+
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -20,13 +22,14 @@ import { SongEditComponent } from './form/song-edit/song-edit.component';
   imports: [
     CommonModule,
     FormsModule,
+    PipeModule,
     MatDialogModule,
     MatButtonModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
 })
 export class DialogModule {}
