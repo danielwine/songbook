@@ -3,19 +3,37 @@
   <h2>{{ song.title }}</h2>
   <h4>
     <em>
-      <div *ngIf="song.lyricist.length == 1">
+      <div *ngIf="song.lyricist.length > 0 || song.lyricist.length > 0">
         szöveg:
-        <span *ngFor="let lyricist of song.lyricist">
-          {{ lyricist.name }},&nbsp;
+        <span *ngFor="let lyricist of song.lyricist.slice(0, 2)"
+          >{{ lyricist.name
+          }}<span
+            *ngIf="
+              lyricist == song.lyricist.slice(0, 2).slice(-1)[0];
+              else notLastItem
+            "
+            >,</span
+          >
+          <ng-template #notLastItem>&nbsp;-&nbsp;</ng-template>
         </span>
         zene:
-        <span *ngFor="let composer of song.composer">
-          {{ composer.name }},&nbsp;
+        <span *ngFor="let composer of song.composer.slice(0, 2)">
+          {{ composer.name
+          }}<span
+            *ngIf="
+              composer == song.composer.slice(0, 2).slice(-1)[0];
+              else notLastItem
+            "
+            >,</span
+          >
+          <ng-template #notLastItem>&nbsp;-&nbsp;</ng-template>
         </span>
-        <br />
       </div>
       <div *ngIf="song.album">
-        <span> album: {{ song.album.name }} ({{ song.year }}) </span>
+        <span>
+          album: {{ song.album.name }}
+          <span *ngIf="song.year">({{ song.year }})</span>
+        </span>
       </div>
     </em>
   </h4>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { SongEditComponent } from 'src/app/dialog/form/song-edit/song-edit.component';
 import { DialogService } from 'src/app/dialog/service/dialog.service';
 import { MessageService } from 'src/app/dialog/service/message.service';
@@ -29,10 +29,14 @@ export class SongComponent implements OnInit {
     this.songService.getItem(id).subscribe((item) => {
       if (!item) this.messageService.showFailed();
       else {
-        this.dialogService.open(SongEditComponent, item);
+        this.dialogService
+          .open(SongEditComponent, item)
+          .pipe(take(1))
+          .subscribe((result) => {
+            console.log(result);
+          });
       }
     });
-    console.log(id);
   }
 
   delete(id: string) {

@@ -49,8 +49,99 @@
       >
     </mat-autocomplete>
   </mat-form-field>
-  <button mat-raised-button color="primary">Mentés</button>
-  <!-- <p>
-    {{ data | json }}
-  </p> -->
+  <mat-form-field class="full-width">
+    <input
+      type="text"
+      matInput
+      name="year"
+      placeholder="Év"
+      [(ngModel)]="data.year"
+  /></mat-form-field>
+  <mat-form-field class="full-width">
+    <input
+      type="text"
+      matInput
+      name="time"
+      placeholder="Hossz"
+      [(ngModel)]="data.time"
+  /></mat-form-field>
+
+  <div *ngFor="let lyricist of data.lyricist">
+    <mat-form-field class="full-width">
+      <input
+        type="text"
+        matInput
+        name="lyricist"
+        placeholder="Szövegíró"
+        [(ngModel)]="lyricist.name"
+        [matAutocomplete]="autoLyricist"
+      />
+      <mat-autocomplete #autoLyricist="matAutocomplete">
+        <mat-option
+          *ngFor="let lyricist of lyricists$ | async | sorter: 'name'"
+          [value]="lyricist.name"
+        >
+          <span>{{ lyricist.name }}</span></mat-option
+        >
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div *ngFor="let composer of data.composer">
+    <mat-form-field class="full-width">
+      <input
+        type="text"
+        matInput
+        name="composer"
+        placeholder="Zeneszerző"
+        [(ngModel)]="composer.name"
+        [matAutocomplete]="autoComposer"
+      />
+      <mat-autocomplete #autoComposer="matAutocomplete">
+        <mat-option
+          *ngFor="let composer of composers$ | async | sorter: 'name'"
+          [value]="composer.name"
+        >
+          <span>{{ composer.name }}</span></mat-option
+        >
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div *ngFor="let genre of data.x_genre">
+    <mat-form-field class="full-width">
+      <input
+        type="text"
+        matInput
+        name="genre"
+        placeholder="Műfaj"
+        [(ngModel)]="genre.name"
+        [matAutocomplete]="autoGenre"
+      />
+      <mat-autocomplete #autoGenre="matAutocomplete">
+        <mat-option
+          *ngFor="let genre of genres$ | async | sorter: 'name'"
+          [value]="genre.name"
+        >
+          <span>{{ genre.name }}</span></mat-option
+        >
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Dalszöveg</mat-label>
+    <textarea
+      matInput
+      placeholder="Írja be a dal szövegét..."
+      name="lyrics"
+      [(ngModel)]="data.lyrics"
+    ></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data">
+    Mentés
+  </button>
+  <button mat-raised-button color="secondary" [mat-dialog-close]="">
+    Mégsem
+  </button>
 </div>
