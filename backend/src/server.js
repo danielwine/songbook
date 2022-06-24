@@ -54,13 +54,13 @@ app.use('/album',
     // authenticateJwt, adminOnly,
     require('./controller/album/router'));
 app.use('/composer',
-    authenticateJwt, adminOnly,
+    authenticateJwt,
     require('./controller/composer/router'));
 app.use('/lyricist',
-    authenticateJwt, adminOnly,
+    authenticateJwt,
     require('./controller/lyricist/router'));
 app.use('/genre',
-    authenticateJwt, adminOnly,
+    authenticateJwt,
     require('./controller/genre/router'));
 
 app.use('/', (req, res) =>

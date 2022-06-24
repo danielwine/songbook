@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "seeder": "node src/seed.js",
     "test": "jest",
-    "deploy": "cd ../frontend && ng build && cd ../backend && sudo docker-compose up"
+    "docker": "cd ../frontend && ng build && cd ../backend && sudo docker-compose up"
   },
   "author": "danielwine",
   "license": "ISC",
