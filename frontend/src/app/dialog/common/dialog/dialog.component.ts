@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface IDialogData {
   title: string;
   content: string;
+  acknowledgeMode?: boolean;
   template?: any;
 }
 
@@ -19,6 +20,5 @@ export class DialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 }

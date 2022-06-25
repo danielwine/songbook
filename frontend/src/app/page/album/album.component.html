@@ -1,4 +1,10 @@
 <div *ngIf="list$ | async as list">
   <h2>Elérhető albumok adatai ({{ list.length }})</h2>
-  <app-mat-data-table [columns]="columns" [list]="list"></app-mat-data-table>
+  <app-mat-data-table
+    [columns]="columns"
+    [list]="list"
+    (requestNew)="create()"
+    (requestEdit)="update($event)"
+    (requestDelete)="delete($event)"
+  ></app-mat-data-table>
 </div>

@@ -8,7 +8,7 @@ export class Song {
   title: string = '';
   artist = new Item();
   album = new Item();
-  year: number | string = 0;
+  year: number | string = 1970;
   time: string = '';
   lyricist = [new Item()];
   composer = [new Item()];

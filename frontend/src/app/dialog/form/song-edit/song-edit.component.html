@@ -3,145 +3,145 @@
     #editorForm="ngForm"
     class="edit-form"
     (ngSubmit)="onSubmit(editorForm, data)"
-  ></form>
-  <mat-form-field class="full-width">
-    <input
-      type="text"
-      matInput
-      name="name"
-      placeholder="Cím"
-      [(ngModel)]="data.title"
-    />
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input
-      type="text"
-      matInput
-      name="artist"
-      placeholder="Előadó"
-      [(ngModel)]="data.artist.name"
-      [matAutocomplete]="autoArtist"
-    />
-    <mat-autocomplete #autoArtist="matAutocomplete">
-      <mat-option
-        *ngFor="let artist of artists$ | async | sorter: 'name'"
-        [value]="artist.name"
-      >
-        <span>{{ artist.name }}</span></mat-option
-      >
-    </mat-autocomplete>
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input
-      type="text"
-      matInput
-      name="album"
-      placeholder="Album"
-      [(ngModel)]="data.album.name"
-      [matAutocomplete]="autoAlbum"
-    />
-    <mat-autocomplete #autoAlbum="matAutocomplete">
-      <mat-option
-        *ngFor="let album of albums$ | async | sorter: 'name'"
-        [value]="album.name"
-      >
-        <span>{{ album.name }}</span></mat-option
-      >
-    </mat-autocomplete>
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input
-      type="text"
-      matInput
-      name="year"
-      placeholder="Év"
-      [(ngModel)]="data.year"
-  /></mat-form-field>
-  <mat-form-field class="full-width">
-    <input
-      type="text"
-      matInput
-      name="time"
-      placeholder="Hossz"
-      [(ngModel)]="data.time"
-  /></mat-form-field>
-
-  <div *ngFor="let lyricist of data.lyricist">
+  >
+    <!-- </form> -->
     <mat-form-field class="full-width">
       <input
         type="text"
         matInput
-        name="lyricist"
-        placeholder="Szövegíró"
-        [(ngModel)]="lyricist.name"
-        [matAutocomplete]="autoLyricist"
+        name="name"
+        placeholder="Cím"
+        [(ngModel)]="data.title"
       />
-      <mat-autocomplete #autoLyricist="matAutocomplete">
-        <mat-option
-          *ngFor="let lyricist of lyricists$ | async | sorter: 'name'"
-          [value]="lyricist.name"
-        >
-          <span>{{ lyricist.name }}</span></mat-option
-        >
-      </mat-autocomplete>
     </mat-form-field>
-  </div>
-
-  <div *ngFor="let composer of data.composer">
     <mat-form-field class="full-width">
       <input
         type="text"
         matInput
-        name="composer"
-        placeholder="Zeneszerző"
-        [(ngModel)]="composer.name"
-        [matAutocomplete]="autoComposer"
+        name="artist"
+        placeholder="Előadó"
+        [(ngModel)]="data.artist.name"
+        [matAutocomplete]="autoArtist"
       />
-      <mat-autocomplete #autoComposer="matAutocomplete">
+      <mat-autocomplete #autoArtist="matAutocomplete">
         <mat-option
-          *ngFor="let composer of composers$ | async | sorter: 'name'"
-          [value]="composer.name"
+          *ngFor="let artist of artists$ | async | sorter: 'name'"
+          [value]="artist.name"
         >
-          <span>{{ composer.name }}</span></mat-option
+          <span>{{ artist.name }}</span></mat-option
         >
       </mat-autocomplete>
     </mat-form-field>
-  </div>
-
-  <div *ngFor="let genre of data.x_genre">
+    <mat-form-field *ngIf="data.album" class="full-width">
+      <input
+        type="text"
+        matInput
+        name="album"
+        placeholder="Album"
+        [(ngModel)]="data.album.name"
+        [matAutocomplete]="autoAlbum"
+      />
+      <mat-autocomplete #autoAlbum="matAutocomplete">
+        <mat-option
+          *ngFor="let album of albums$ | async | sorter: 'name'"
+          [value]="album.name"
+        >
+          <span>{{ album.name }}</span></mat-option
+        >
+      </mat-autocomplete>
+    </mat-form-field>
     <mat-form-field class="full-width">
       <input
         type="text"
         matInput
-        name="genre"
-        placeholder="Műfaj"
-        [(ngModel)]="genre.name"
-        [matAutocomplete]="autoGenre"
-      />
-      <mat-autocomplete #autoGenre="matAutocomplete">
-        <mat-option
-          *ngFor="let genre of genres$ | async | sorter: 'name'"
-          [value]="genre.name"
-        >
-          <span>{{ genre.name }}</span></mat-option
-        >
-      </mat-autocomplete>
-    </mat-form-field>
-  </div>
+        name="year"
+        placeholder="Év"
+        [(ngModel)]="data.year"
+    /></mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        type="text"
+        matInput
+        name="time"
+        placeholder="Hossz"
+        [(ngModel)]="data.time"
+    /></mat-form-field>
 
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label>Dalszöveg</mat-label>
-    <textarea
-      matInput
-      placeholder="Írja be a dal szövegét..."
-      name="lyrics"
-      [(ngModel)]="data.lyrics"
-    ></textarea>
-  </mat-form-field>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data">
-    Mentés
-  </button>
-  <button mat-raised-button color="secondary" [mat-dialog-close]="">
-    Mégsem
-  </button>
+    <div class="form-group">
+      <mat-form-field *ngFor="let lyricist of data.lyricist" class="full-width">
+        <input
+          type="text"
+          matInput
+          [name]="'lyricist-' + lyricist.name"
+          placeholder="Szövegíró"
+          [(ngModel)]="lyricist.name"
+          [matAutocomplete]="autoLyricist"
+        />
+        <mat-autocomplete #autoLyricist="matAutocomplete">
+          <mat-option
+            *ngFor="let lyricist of lyricists$ | async | sorter: 'name'"
+            [value]="lyricist.name"
+          >
+            <span>{{ lyricist.name }}</span></mat-option
+          >
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field *ngFor="let composer of data.composer" class="full-width">
+        <input
+          type="text"
+          matInput
+          [name]="'composer-' + composer.name"
+          placeholder="Zeneszerző"
+          [(ngModel)]="composer.name"
+          [matAutocomplete]="autoComposer"
+        />
+        <mat-autocomplete #autoComposer="matAutocomplete">
+          <mat-option
+            *ngFor="let composer of composers$ | async | sorter: 'name'"
+            [value]="composer.name"
+          >
+            <span>{{ composer.name }}</span></mat-option
+          >
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field *ngFor="let genre of data.x_genre" class="full-width">
+        <input
+          type="text"
+          matInput
+          [name]="'genre-' + genre.name"
+          placeholder="Műfaj"
+          [(ngModel)]="genre.name"
+          [matAutocomplete]="autoGenre"
+        />
+        <mat-autocomplete #autoGenre="matAutocomplete">
+          <mat-option
+            *ngFor="let genre of genres$ | async | sorter: 'name'"
+            [value]="genre.name"
+          >
+            <span>{{ genre.name }}</span></mat-option
+          >
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Dalszöveg</mat-label>
+      <textarea
+        matInput
+        placeholder="Írja be a dal szövegét..."
+        name="lyrics"
+        [(ngModel)]="data.lyrics"
+      ></textarea>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Mentés</button>
+    <button mat-raised-button color="secondary" [mat-dialog-close]="">
+      Mégsem
+    </button>
+  </form>
 </div>

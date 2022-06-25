@@ -26,6 +26,10 @@ export class MessageService {
     this.showMessage('Sikertelen művelet');
   }
 
+  showInvalidForm(): void {
+    this.showMessage('Érvénytelen űrlap');
+  }
+
   showMessage(message: string): void {
     this.snackBar.open(message, '', {
       duration: 3000,

@@ -40,8 +40,9 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
 
   @Input() list: T[] = [];
   @Input() columns: IMatTableColumn[] = [];
-  @Output() requestDelete = new EventEmitter();
+  @Output() requestNew = new EventEmitter();
   @Output() requestEdit = new EventEmitter();
+  @Output() requestDelete = new EventEmitter();
 
   getColumnKeys = (columns: IMatTableColumn[]) =>
     columns.map((item) => item.key);
@@ -72,8 +73,12 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  onNew(): void {
+    this.requestNew.emit();
+  }
+
   onEdit(item: T): void {
-    this.requestEdit.emit(item['_id']);
+    this.requestEdit.emit(item);
   }
 
   onDelete(item: T): void {
@@ -88,7 +93,7 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
       .pipe(take(1))
       .subscribe((result) => {
         if (!result) return;
-        else this.requestDelete.emit(item['_id']);
+        else this.requestDelete.emit(item);
       });
   }
 
@@ -101,7 +106,6 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
     this.dataSource.paginator = this.paginator;
 
     this.dataSource.filterPredicate = (data: T, filter: string) => {
-      console.log('filterKey: ', this.currentFilterKey);
       const key = this.currentFilterKey || '';
       let source = '';
       if (key) {
@@ -113,17 +117,14 @@ export class MatDataTableComponent<T extends { [x: string]: any }>
           let items = data[key];
           if (!Array.isArray(items)) items = [data[key]];
           if (items[0] && 'name' in items[0]) {
-            console.log(items);
             if (items.length === 1) source = items[0]['name'];
             if (items.length > 1)
               source = items.reduce((item: any, prev: any) => {
-                console.log('reduce ', item, prev);
                 return item['name'] + ' ' + prev['name'];
               });
           }
         }
       } else source = JSON.stringify(data);
-      console.log('source: ', source);
       return source.toLowerCase().includes(filter.toLowerCase());
     };
   }

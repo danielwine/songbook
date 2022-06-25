@@ -3,7 +3,8 @@
   <app-mat-data-table
     [columns]="columns"
     [list]="list"
+    (requestNew)="create()"
+    (requestEdit)="update($event)"
     (requestDelete)="delete($event)"
-    (requestEdit)="edit($event)"
   ></app-mat-data-table>
 </div>

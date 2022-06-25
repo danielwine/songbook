@@ -1,0 +1,49 @@
+<div mat-dialog-content>
+  <form
+    #editorForm="ngForm"
+    class="edit-form"
+    (ngSubmit)="onSubmit(editorForm, data)"
+  >
+    <mat-form-field class="full-width">
+      <input
+        type="text"
+        matInput
+        name="name"
+        placeholder="Cím"
+        [(ngModel)]="data.name"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        type="number"
+        matInput
+        name="year"
+        placeholder="Megjelenési év"
+        [(ngModel)]="data.year"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        type="url"
+        matInput
+        name="imageurl"
+        placeholder="borítókép (link)"
+        [(ngModel)]="data.imageUrl"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        type="number"
+        matInput
+        name="songs"
+        placeholder="Hozzárendelt dalok"
+        disabled="true"
+        [(ngModel)]="data.songs.length"
+      />
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Mentés</button>
+    <button mat-raised-button color="secondary" [mat-dialog-close]="">
+      Mégsem
+    </button>
+  </form>
+</div>

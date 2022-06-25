@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, of, take } from 'rxjs';
 import { SongEditComponent } from 'src/app/dialog/form/song-edit/song-edit.component';
 import { DialogService } from 'src/app/dialog/service/dialog.service';
@@ -21,12 +20,20 @@ export class SongComponent implements OnInit {
     private config: ConfigService,
     private songService: SongService,
     private messageService: MessageService,
-    private dialogService: DialogService,
-    private router: Router
+    private dialogService: DialogService
   ) {}
 
-  edit(id: string) {
-    this.songService.getItem(id).subscribe((item) => {
+  create() {
+    this.dialogService
+      .open(SongEditComponent, new Song())
+      .pipe(take(1))
+      .subscribe((result) => {
+        console.log(result);
+      });
+  }
+
+  update(item: Song) {
+    this.songService.getItem(item._id.toString()).subscribe((item) => {
       if (!item) this.messageService.showFailed();
       else {
         this.dialogService
@@ -39,8 +46,8 @@ export class SongComponent implements OnInit {
     });
   }
 
-  delete(id: string) {
-    this.songService.deleteItem(id).subscribe({
+  delete(item: Song) {
+    this.songService.deleteItem(item._id.toString()).subscribe({
       next: (error) => {
         if (error) {
           this.messageService.showDeleted();

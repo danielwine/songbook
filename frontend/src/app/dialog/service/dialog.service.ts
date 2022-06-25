@@ -13,7 +13,7 @@ export class DialogService {
     const dialogRef = this.dialog.open(component, {
       data,
       position: {top: '12vh'},
-      height: '80vh',
+      // height: '80vh',
       width: '500px',
     });
     return dialogRef.afterClosed();

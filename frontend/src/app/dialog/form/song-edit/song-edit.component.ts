@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Form } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Song } from 'src/app/model/song';
 import { AlbumService } from 'src/app/service/album.service';
@@ -7,6 +7,7 @@ import { ArtistService } from 'src/app/service/artist.service';
 import { ComposerService } from 'src/app/service/composer.service';
 import { GenreService } from 'src/app/service/genre.service';
 import { LyricistService } from 'src/app/service/lyricist.service';
+import { MessageService } from '../../service/message.service';
 
 @Component({
   selector: 'app-song-edit',
@@ -26,10 +27,15 @@ export class SongEditComponent implements OnInit {
     public albumService: AlbumService,
     public lyricistService: LyricistService,
     public composerService: ComposerService,
-    public genreService: GenreService
+    public genreService: GenreService,
+    public messageService: MessageService
   ) {}
 
-  onSubmit(form: Form, data: Song): void {}
+  onSubmit(form: NgForm, data: Song): void {
+    if (form.invalid) {
+      this.messageService.showInvalidForm();
+    } else this.dialogRef.close(data);
+  }
 
   ngOnInit(): void {}
 }

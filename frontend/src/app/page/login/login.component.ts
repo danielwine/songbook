@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MessageService } from 'src/app/dialog/service/message.service';
 import { AuthService, ILoginData } from 'src/app/service/auth.service';
 
@@ -13,7 +12,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    public snackBar: MatSnackBar,
     public messageService: MessageService
   ) {}
 

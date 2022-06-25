@@ -16,9 +16,13 @@ import { MatInputModule } from '@angular/material/input';
 
 import { DialogComponent } from './common/dialog/dialog.component';
 import { SongEditComponent } from './form/song-edit/song-edit.component';
+import { AlbumEditComponent } from './form/album-edit/album-edit.component';
+import { ArtistEditComponent } from './form/artist-edit/artist-edit.component';
+import { LyricistEditComponent } from './form/lyricist-edit/lyricist-edit.component';
+import { ComposerEditComponent } from './form/composer-edit/composer-edit.component';
 
 @NgModule({
-  declarations: [DialogComponent, SongEditComponent],
+  declarations: [DialogComponent, SongEditComponent, AlbumEditComponent, ArtistEditComponent, LyricistEditComponent, ComposerEditComponent],
   imports: [
     CommonModule,
     FormsModule,
