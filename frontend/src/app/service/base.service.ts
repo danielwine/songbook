@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class BaseService<T extends { _id: number | string }> {
+export class BaseService<T extends {_id?: string}> {
   apiBaseUrl = environment.apiBaseUrl;
   apiFullUrl = '';
 
@@ -21,6 +21,8 @@ export class BaseService<T extends { _id: number | string }> {
   // CRUD methods
 
   createItem(item: T): Observable<T> {
+    console.log('create ', this.apiFullUrl, item);
+
     return this.http.post<T>(this.apiFullUrl, item);
   }
 
@@ -37,7 +39,7 @@ export class BaseService<T extends { _id: number | string }> {
   }
 
   updateItem(item: T): Observable<T> {
-    return this.http.patch<T>(this.apiFullUrl + '/' + item._id, item);
+    return this.http.put<T>(this.apiFullUrl + '/' + item._id, item);
   }
 
   deleteItem(id: string): Observable<any> {

@@ -9,9 +9,14 @@ const models = {
 
 module.exports = (model) => {
     return {
-        create: itemData => {
-            const item = new model(itemData);
-            return item.save();
+        create: async body => {
+            const Entity = new model(body)
+            const validationErrors = Entity.validateSync();
+            if (!validationErrors) {
+                const saved = await Entity.save();
+                return model.findById(saved._id);
+            }
+            throw new Error(validationErrors);
         },
         findOne: (id) => model.find({ _id: id }),
         findAllIds: () =>
@@ -21,8 +26,13 @@ module.exports = (model) => {
             if (!result) return null;
             else return result._id
         },
-        updateOne: (id, updateData) =>
-            model.findByIdAndUpdate(id, updateData, { new: true }),
+        updateOne: async (id, body) => {
+            const Entity = new model(body);
+            const validationErrors = Entity.validateSync();
+            if (!validationErrors)
+                return model.findByIdAndUpdate(id, body, { new: true });
+            throw new Error(validationErrors);
+        },
         deleteOne: id => model.findByIdAndRemove(id)
     }
 }

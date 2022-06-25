@@ -1,17 +1,18 @@
-class Item {
-  _id: string = '';
-  name: string = '';
-}
+import { Album } from './album';
+import { Artist } from './artist';
+import { Composer } from './composer';
+import { Genre } from './genre';
+import { Lyricist } from './lyricist';
 
 export class Song {
-  _id: number | string = 0;
+  _id: string = '';
   title: string = '';
-  artist = new Item();
-  album = new Item();
-  year: number | string = 1970;
-  time: string = '';
-  lyricist = [new Item()];
-  composer = [new Item()];
-  x_genre = [new Item()];
+  artist = new Artist();
+  album? = new Album();
+  year?: number | string = 1970;
+  time?: string = '';
+  lyricist? = [new Lyricist()];
+  composer? = [new Composer()];
+  x_genre? = [new Genre()];
   lyrics: string = '';
 }

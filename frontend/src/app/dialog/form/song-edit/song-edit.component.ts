@@ -34,7 +34,9 @@ export class SongEditComponent implements OnInit {
   onSubmit(form: NgForm, data: Song): void {
     if (form.invalid) {
       this.messageService.showInvalidForm();
-    } else this.dialogRef.close(data);
+    } else {
+      this.dialogRef.close(data)
+    }
   }
 
   ngOnInit(): void {}

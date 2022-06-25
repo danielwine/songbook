@@ -27,8 +27,11 @@ export class ComposerComponent implements OnInit {
     this.dialogService
       .open(ComposerEditComponent, new Composer())
       .pipe(take(1))
-      .subscribe((result) => {
-        console.log(result);
+      .subscribe((data) => {
+        let { _id, ...result } = data;
+        this.composerService.createItem(result).subscribe((item) => {
+          this.list$ = this.composerService.getAll();
+        });
       });
   }
 
@@ -40,7 +43,10 @@ export class ComposerComponent implements OnInit {
           .open(ComposerEditComponent, item)
           .pipe(take(1))
           .subscribe((result) => {
-            console.log(result);
+            if (result)
+              this.composerService.updateItem(result).subscribe(() => {
+                this.list$ = this.composerService.getAll();
+              });
           });
       }
     });

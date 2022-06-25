@@ -27,8 +27,11 @@ export class SongComponent implements OnInit {
     this.dialogService
       .open(SongEditComponent, new Song())
       .pipe(take(1))
-      .subscribe((result) => {
-        console.log(result);
+      .subscribe((data) => {
+        let { _id, ...result } = data;
+        this.songService.createItem(result).subscribe(() => {
+          this.list$ = this.songService.getAll();
+        });
       });
   }
 
@@ -40,7 +43,10 @@ export class SongComponent implements OnInit {
           .open(SongEditComponent, item)
           .pipe(take(1))
           .subscribe((result) => {
-            console.log(result);
+            if (result)
+              this.songService.updateItem(result).subscribe(() => {
+                this.list$ = this.songService.getAll();
+              });
           });
       }
     });

@@ -27,8 +27,12 @@ export class AlbumComponent implements OnInit {
     this.dialogService
       .open(AlbumEditComponent, new Album())
       .pipe(take(1))
-      .subscribe((result) => {
-        console.log(result);
+      .subscribe((data) => {
+        let { _id, ...result } = data;
+        console.log('album result: ', result);
+        this.albumService.createItem(result).subscribe((item) => {
+          this.list$ = this.albumService.getAll();
+        });
       });
   }
 
@@ -40,7 +44,10 @@ export class AlbumComponent implements OnInit {
           .open(AlbumEditComponent, item)
           .pipe(take(1))
           .subscribe((result) => {
-            console.log(result);
+            if (result)
+              this.albumService.updateItem(result).subscribe(() => {
+                this.list$ = this.albumService.getAll();
+              });
           });
       }
     });

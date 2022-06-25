@@ -27,8 +27,11 @@ export class LyricistComponent implements OnInit {
     this.dialogService
       .open(LyricistEditComponent, new Lyricist())
       .pipe(take(1))
-      .subscribe((result) => {
-        console.log(result);
+      .subscribe((data) => {
+        let { _id, ...result } = data;
+        this.lyricistService.createItem(result).subscribe((item) => {
+          this.list$ = this.lyricistService.getAll();
+        });
       });
   }
 
@@ -40,7 +43,10 @@ export class LyricistComponent implements OnInit {
           .open(LyricistEditComponent, item)
           .pipe(take(1))
           .subscribe((result) => {
-            console.log(result);
+            if (result)
+              this.lyricistService.updateItem(result).subscribe(() => {
+                this.list$ = this.lyricistService.getAll();
+              });
           });
       }
     });

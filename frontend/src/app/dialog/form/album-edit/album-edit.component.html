@@ -6,6 +6,7 @@
   >
     <mat-form-field class="full-width">
       <input
+        required
         type="text"
         matInput
         name="name"
@@ -13,8 +14,30 @@
         [(ngModel)]="data.name"
       />
     </mat-form-field>
+
+    <mat-form-field *ngIf="data.artist" class="full-width">
+      <input
+        required
+        type="text"
+        matInput
+        name="artist"
+        placeholder="Előadó"
+        [(ngModel)]="data.artist.name"
+        [matAutocomplete]="autoArtist"
+      />
+      <mat-autocomplete #autoArtist="matAutocomplete">
+        <mat-option
+          *ngFor="let artist of artists$ | async | sorter: 'name'"
+          [value]="artist.name"
+        >
+          <span>{{ artist.name }}</span></mat-option
+        >
+      </mat-autocomplete>
+    </mat-form-field>
+
     <mat-form-field class="full-width">
       <input
+        required
         type="number"
         matInput
         name="year"
@@ -31,7 +54,7 @@
         [(ngModel)]="data.imageUrl"
       />
     </mat-form-field>
-    <mat-form-field class="full-width">
+    <!-- <mat-form-field class="full-width">
       <input
         type="number"
         matInput
@@ -40,7 +63,7 @@
         disabled="true"
         [(ngModel)]="data.songs.length"
       />
-    </mat-form-field>
+    </mat-form-field> -->
     <button type="submit" mat-raised-button color="primary">Mentés</button>
     <button mat-raised-button color="secondary" [mat-dialog-close]="">
       Mégsem

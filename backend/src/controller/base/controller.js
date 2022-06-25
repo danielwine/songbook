@@ -15,18 +15,14 @@ const isIdInvalid = (id, next) => {
 module.exports = (service) => {
     return {
         create: (req, res, next) => {
-            const validationErrors = new model(req.body).validateSync();
-            if (validationErrors) {
-                return next(
-                    new createError.BadRequest(validationErrors)
-                )
-            }
             return service.create(req.body)
                 .then(cp => {
                     res.status(201).json(cp);
                 })
-                .catch(reason => next(
-                    new createError.InternalServerError(reason.message)));
+                .catch(reason => {
+                    next(
+                        new createError.InternalServerError(reason.message))
+                })
         },
         findAllIds: (req, res, next) => {
             return service.findAllIds()
@@ -45,13 +41,6 @@ module.exports = (service) => {
         },
         updateOne: (req, res, next) => {
             const id = req.params.id;
-            if (isIdInvalid(id, next)) return
-            const validationErrors = new model(req.body).validateSync();
-            if (validationErrors) {
-                return next(
-                    new createError.BadRequest(validationErrors)
-                )
-            }
             return service.updateOne(id, req.body)
                 .then(entity => {
                     res.json(entity);

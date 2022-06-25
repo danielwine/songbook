@@ -9,16 +9,22 @@ paths:
   /song:
     get:
       description: returns a list of all songs (populated, without lyrics)
+      responses:
+        '200':
+          description: List of songs returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Song'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
-responses:
-  '200':
-    description: Success
-    content:
-      application/json:
-        schema:
-          type: array
-          items:
-            $ref: '#components/schemas/Song'
 components:
   securitySchemes:
     bearerAuth:
@@ -30,4 +36,111 @@ components:
       type: object
       required:
         - title
-
+        - artist
+        - lyrics
+      properties:
+        title:
+          type: string
+        artist:
+          type: object
+          $ref: '#components/schemas/Artist'
+        album:
+          type: object
+          $ref: '#components/schemas/Album'
+        year:
+          type: number
+        time:
+          type: string
+        lyricist:
+          type: object
+          $ref: '#components/schemas/Lyricist'
+        composer:
+          type: object
+          $ref: '#components/schemas/Composer'
+        x_genre:
+          type: object
+          $ref: '#components/schemas/Genre'
+        lyrics:
+          type: string
+    Artist:
+      type: object
+      required:
+        - name
+        - songs
+      properties:
+        name:
+          type: string
+        imageUrl:
+          type: string
+        songs:
+          type: array
+          items:
+            $ref: '#components/schemas/Song'
+    Album:
+      type: object
+      required:
+        - name
+        - artist
+        - songs
+      properties:
+        name:
+          type: string
+        artist:
+          type: object
+          $ref: '#components/schemas/Artist'
+        year:
+          type: number
+        imageUrl:
+          type: string
+        songs:
+          type: array
+          items:
+            $ref: '#components/schemas/Song'
+    Lyricist:
+      type: object
+      required:
+        - name
+        - songs
+      properties:
+        name:
+          type: string
+        songs:
+          type: array
+          items:
+            $ref: '#components/schemas/Song'
+    Composer:
+      type: object
+      required:
+        - name
+        - songs
+      properties:
+        name:
+          type: string
+        songs:
+          type: array
+          items:
+            $ref: '#components/schemas/Song'
+    Genre:
+      type: object
+      required:
+        - name
+        - songs
+      properties:
+        name:
+          type: string
+        songs:
+          type: array
+          items:
+            $ref: '#components/schemas/Song'
+    Error:
+      type: object
+      required:
+        - has_error
+        - message
+      properties:
+        has_error:
+          type: boolean
+        message:
+          type: string
+        errorCode:
+          type: number

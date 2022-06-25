@@ -4,9 +4,9 @@
     class="edit-form"
     (ngSubmit)="onSubmit(editorForm, data)"
   >
-    <!-- </form> -->
     <mat-form-field class="full-width">
       <input
+        required
         type="text"
         matInput
         name="name"
@@ -16,6 +16,7 @@
     </mat-form-field>
     <mat-form-field class="full-width">
       <input
+        required
         type="text"
         matInput
         name="artist"
@@ -133,6 +134,7 @@
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Dalszöveg</mat-label>
       <textarea
+        required
         matInput
         placeholder="Írja be a dal szövegét..."
         name="lyrics"

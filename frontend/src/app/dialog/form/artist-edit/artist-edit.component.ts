@@ -19,7 +19,9 @@ export class ArtistEditComponent implements OnInit {
   onSubmit(form: NgForm, data: Artist): void {
     if (form.invalid) {
       this.messageService.showInvalidForm();
-    } else this.dialogRef.close(data);
+    } else {
+      this.dialogRef.close(data);
+    }
   }
 
   ngOnInit(): void {}

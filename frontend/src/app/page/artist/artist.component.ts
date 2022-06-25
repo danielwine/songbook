@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { ArtistEditComponent } from 'src/app/dialog/form/artist-edit/artist-edit.component';
 import { DialogService } from 'src/app/dialog/service/dialog.service';
@@ -20,27 +21,34 @@ export class ArtistComponent implements OnInit {
     private config: ConfigService,
     private artistService: ArtistService,
     private messageService: MessageService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private router: Router
   ) {}
 
   create() {
     this.dialogService
       .open(ArtistEditComponent, new Artist())
       .pipe(take(1))
-      .subscribe((result) => {
-        console.log(result);
+      .subscribe((data) => {
+        let { _id, ...result } = data;
+        this.artistService.createItem(result).subscribe(() => {
+          this.list$ = this.artistService.getAll();
+        });
       });
   }
 
   update(item: Artist) {
-    this.artistService.getItem(item._id.toString()).subscribe((item) => {
-      if (!item) this.messageService.showFailed();
+    this.artistService.getItem(item._id.toString()).subscribe((result) => {
+      if (!result) this.messageService.showFailed();
       else {
         this.dialogService
           .open(ArtistEditComponent, item)
           .pipe(take(1))
           .subscribe((result) => {
-            console.log(result);
+            if (result)
+              this.artistService.updateItem(result).subscribe(() => {
+                this.list$ = this.artistService.getAll();
+              });
           });
       }
     });

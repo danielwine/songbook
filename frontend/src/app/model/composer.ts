@@ -1,5 +1,5 @@
 export class Composer {
-  _id: number | string = 0;
+  _id: string = '';
   name: string = '';
   songs: number[] | string[] = [];
 }
