@@ -30,7 +30,11 @@ export class ComposerComponent implements OnInit {
       .subscribe((data) => {
         let { _id, ...result } = data;
         this.composerService.createItem(result).subscribe((item) => {
-          this.list$ = this.composerService.getAll();
+          if (!item) this.messageService.showFailed();
+          else {
+            this.messageService.showCreated();
+            this.list$ = this.composerService.getAll();
+          }
         });
       });
   }

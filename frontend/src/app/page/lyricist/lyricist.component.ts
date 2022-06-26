@@ -30,7 +30,11 @@ export class LyricistComponent implements OnInit {
       .subscribe((data) => {
         let { _id, ...result } = data;
         this.lyricistService.createItem(result).subscribe((item) => {
-          this.list$ = this.lyricistService.getAll();
+          if (!item) this.messageService.showFailed();
+          else {
+            this.messageService.showCreated();
+            this.list$ = this.lyricistService.getAll();
+          }
         });
       });
   }

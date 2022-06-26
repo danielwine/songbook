@@ -7,7 +7,7 @@ import { Lyricist } from './lyricist';
 export class Song {
   _id: string = '';
   title: string = '';
-  artist = new Artist();
+  artist!: Artist;
   album? = new Album();
   year?: number | string = 1970;
   time?: string = '';
@@ -21,10 +21,10 @@ export class SongRequest {
   [key: string]: any;
   _id: string = '';
   title: string = '';
-  artist = '';
-  album? = '';
+  artist?: string;
+  album?: string;
   year?: number | string = 1970;
-  time?: string = '';
+  time?: string;
   lyricist: string[] = []
   composer: string[] = []
   x_genre: string[] = []

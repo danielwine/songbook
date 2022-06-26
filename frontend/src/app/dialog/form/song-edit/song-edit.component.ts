@@ -27,7 +27,6 @@ export class SongEditComponent implements OnInit {
   genres$ = this.genreService.getAll();
 
   request = new SongRequest();
-  lyricistsTemp: Lyricist[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<SongEditComponent>,
@@ -42,10 +41,17 @@ export class SongEditComponent implements OnInit {
 
   convertDataToSongRequest() {
     Object.entries(this.data).forEach((entry) => {
-      if (typeof entry[1] == 'string') this.request[entry[0]] = entry[1];
-      if (typeof entry[1] == 'object' && '_id' in entry[1])
+      if (typeof entry[1] == 'string' && entry[1] != '')
+        this.request[entry[0]] = entry[1];
+      if (
+        typeof entry[1] == 'object' &&
+        '_id' in entry[1] &&
+        entry[1]['_id'] !== ''
+      ) {
         this.request[entry[0]] = entry[1]['_id'];
-      if (Array.isArray(entry[1])) {
+      }
+
+      if (Array.isArray(entry[1]) && entry[1][0] && entry[1][0]['name']) {
         this.request[entry[0]] = entry[1].map((item) => item.name._id);
       }
     });
@@ -68,7 +74,5 @@ export class SongEditComponent implements OnInit {
     return item ? item.name : '';
   }
 
-  ngOnInit(): void {
-    console.log(JSON.stringify(this.data));
-  }
+  ngOnInit(): void {}
 }

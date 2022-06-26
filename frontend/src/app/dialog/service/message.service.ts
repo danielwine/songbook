@@ -18,6 +18,10 @@ export class MessageService {
     return dialogRef.afterClosed();
   }
 
+  showCreated(): void {
+    this.showMessage('Az elem létrehozva');
+  }
+
   showDeleted(): void {
     this.showMessage('Az elem törölve');
   }

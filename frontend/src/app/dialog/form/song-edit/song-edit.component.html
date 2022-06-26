@@ -7,6 +7,7 @@
     <mat-form-field class="full-width">
       <input
         required
+        pattern="^[a-űA-Ű]{1,}$"
         type="text"
         matInput
         name="name"
@@ -38,6 +39,7 @@
     </mat-form-field>
     <mat-form-field *ngIf="data.album" class="full-width">
       <input
+        required
         type="text"
         matInput
         name="album"
@@ -103,7 +105,10 @@
     </div>
 
     <div class="form-group">
-      <mat-form-field *ngFor="let composer of data.composer; let i = index" class="full-width">
+      <mat-form-field
+        *ngFor="let composer of data.composer; let i = index"
+        class="full-width"
+      >
         <input
           type="text"
           matInput
@@ -127,7 +132,10 @@
     </div>
 
     <div class="form-group">
-      <mat-form-field *ngFor="let genre of data.x_genre let i = index" class="full-width">
+      <mat-form-field
+        *ngFor="let genre of data.x_genre; let i = index"
+        class="full-width"
+      >
         <input
           type="text"
           matInput

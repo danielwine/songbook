@@ -5,6 +5,6 @@ export class Album {
   name: string = '';
   artist: Artist = new Artist();
   songs: number[] | string[] = [];
-  year: number | string = 0;
+  year: number | string = 1970;
   imageUrl?: string = '';
 }

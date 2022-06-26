@@ -50,6 +50,7 @@ export class ConfigService {
   albumTableColumns: IMatTableColumn[] = [
     // { key: '_id', title: '#' },
     { key: 'name', title: 'Cím' },
+    { key: 'artist', title: 'Előadó' },
     { key: 'songs', title: 'Dalok' },
     { key: 'year', title: 'Megjelenés' },
     { key: 'imageUrl', title: 'Borítókép' },

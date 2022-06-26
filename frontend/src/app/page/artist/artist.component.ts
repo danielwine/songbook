@@ -31,8 +31,12 @@ export class ArtistComponent implements OnInit {
       .pipe(take(1))
       .subscribe((data) => {
         let { _id, songs, ...result } = data;
-        this.artistService.createItem(result).subscribe(() => {
-          this.list$ = this.artistService.getAll();
+        this.artistService.createItem(result).subscribe((item) => {
+          if (!item) this.messageService.showFailed();
+          else {
+            this.messageService.showCreated();
+            this.list$ = this.artistService.getAll();
+          }
         });
       });
   }

@@ -31,7 +31,11 @@ export class AlbumComponent implements OnInit {
         let { _id, ...result } = data;
         console.log('album result: ', result);
         this.albumService.createItem(result).subscribe((item) => {
-          this.list$ = this.albumService.getAll();
+          if (!item) this.messageService.showFailed();
+          else {
+            this.messageService.showCreated();
+            this.list$ = this.albumService.getAll();
+          }
         });
       });
   }

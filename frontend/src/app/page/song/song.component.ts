@@ -29,8 +29,12 @@ export class SongComponent implements OnInit {
       .pipe(take(1))
       .subscribe((data) => {
         let { _id, ...result } = data;
-        this.songService.createItem(result).subscribe(() => {
-          this.list$ = this.songService.getAll();
+        this.songService.createItem(result).subscribe((item) => {
+          if (!item) this.messageService.showFailed();
+          else {
+            this.messageService.showCreated();
+            this.list$ = this.songService.getAll();
+          }
         });
       });
   }
