@@ -44,13 +44,15 @@ export class ConfigService {
     // { key: '_id', title: '#' },
     { key: 'name', title: 'Név' },
     { key: 'songs', title: 'Dalok' },
+    { key: 'imageUrl', title: 'Kép' },
     { key: 'actions', title: '' },
   ];
   albumTableColumns: IMatTableColumn[] = [
     // { key: '_id', title: '#' },
     { key: 'name', title: 'Cím' },
     { key: 'songs', title: 'Dalok' },
-    { key: 'year', title: 'Megjelenési év' },
+    { key: 'year', title: 'Megjelenés' },
+    { key: 'imageUrl', title: 'Borítókép' },
     { key: 'actions', title: '' },
   ];
   lyricistTableColumns: IMatTableColumn[] = [

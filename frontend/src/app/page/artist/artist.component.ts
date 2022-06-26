@@ -30,7 +30,7 @@ export class ArtistComponent implements OnInit {
       .open(ArtistEditComponent, new Artist())
       .pipe(take(1))
       .subscribe((data) => {
-        let { _id, ...result } = data;
+        let { _id, songs, ...result } = data;
         this.artistService.createItem(result).subscribe(() => {
           this.list$ = this.artistService.getAll();
         });

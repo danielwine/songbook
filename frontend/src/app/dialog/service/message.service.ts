@@ -27,7 +27,7 @@ export class MessageService {
   }
 
   showInvalidForm(): void {
-    this.showMessage('Érvénytelen űrlap');
+    this.showMessage('Nem megfelelően kitöltött űrlap');
   }
 
   showMessage(message: string): void {
