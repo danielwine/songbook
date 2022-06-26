@@ -1,7 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Song } from 'src/app/model/song';
+import { Album } from 'src/app/model/album';
+import { Artist } from 'src/app/model/artist';
+import { Composer } from 'src/app/model/composer';
+import { Genre } from 'src/app/model/genre';
+import { Lyricist } from 'src/app/model/lyricist';
+import { Song, SongRequest } from 'src/app/model/song';
 import { AlbumService } from 'src/app/service/album.service';
 import { ArtistService } from 'src/app/service/artist.service';
 import { ComposerService } from 'src/app/service/composer.service';
@@ -20,6 +25,10 @@ export class SongEditComponent implements OnInit {
   lyricists$ = this.lyricistService.getAll();
   composers$ = this.composerService.getAll();
   genres$ = this.genreService.getAll();
+
+  request = new SongRequest();
+  lyricistsTemp: Lyricist[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<SongEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Song,
@@ -31,13 +40,35 @@ export class SongEditComponent implements OnInit {
     public messageService: MessageService
   ) {}
 
+  convertDataToSongRequest() {
+    Object.entries(this.data).forEach((entry) => {
+      if (typeof entry[1] == 'string') this.request[entry[0]] = entry[1];
+      if (typeof entry[1] == 'object' && '_id' in entry[1])
+        this.request[entry[0]] = entry[1]['_id'];
+      if (Array.isArray(entry[1])) {
+        this.request[entry[0]] = entry[1].map((item) => item.name._id);
+      }
+    });
+  }
+
   onSubmit(form: NgForm, data: Song): void {
     if (form.invalid) {
       this.messageService.showInvalidForm();
     } else {
-      this.dialogRef.close(data)
+      console.log('DATA', this.data);
+      this.convertDataToSongRequest();
+      console.log('REQUEST', this.request);
+      this.dialogRef.close(this.request);
     }
   }
 
-  ngOnInit(): void {}
+  displayName(item: Artist | Album | Lyricist | Composer | Genre): string {
+    console.log(item);
+    if (typeof item == 'string') return item;
+    return item ? item.name : '';
+  }
+
+  ngOnInit(): void {
+    console.log(JSON.stringify(this.data));
+  }
 }

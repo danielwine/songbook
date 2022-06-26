@@ -16,3 +16,17 @@ export class Song {
   x_genre? = [new Genre()];
   lyrics: string = '';
 }
+
+export class SongRequest {
+  [key: string]: any;
+  _id: string = '';
+  title: string = '';
+  artist = '';
+  album? = '';
+  year?: number | string = 1970;
+  time?: string = '';
+  lyricist: string[] = []
+  composer: string[] = []
+  x_genre: string[] = []
+  lyrics = '';
+}

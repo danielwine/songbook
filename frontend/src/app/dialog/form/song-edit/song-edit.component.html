@@ -21,13 +21,16 @@
         matInput
         name="artist"
         placeholder="Előadó"
-        [(ngModel)]="data.artist.name"
+        [(ngModel)]="data.artist"
         [matAutocomplete]="autoArtist"
       />
-      <mat-autocomplete #autoArtist="matAutocomplete">
+      <mat-autocomplete
+        #autoArtist="matAutocomplete"
+        [displayWith]="displayName"
+      >
         <mat-option
           *ngFor="let artist of artists$ | async | sorter: 'name'"
-          [value]="artist.name"
+          [value]="artist"
         >
           <span>{{ artist.name }}</span></mat-option
         >
@@ -39,13 +42,16 @@
         matInput
         name="album"
         placeholder="Album"
-        [(ngModel)]="data.album.name"
+        [(ngModel)]="data.album"
         [matAutocomplete]="autoAlbum"
       />
-      <mat-autocomplete #autoAlbum="matAutocomplete">
+      <mat-autocomplete
+        #autoAlbum="matAutocomplete"
+        [displayWith]="displayName"
+      >
         <mat-option
           *ngFor="let album of albums$ | async | sorter: 'name'"
-          [value]="album.name"
+          [value]="album"
         >
           <span>{{ album.name }}</span></mat-option
         >
@@ -69,7 +75,10 @@
     /></mat-form-field>
 
     <div class="form-group">
-      <mat-form-field *ngFor="let lyricist of data.lyricist" class="full-width">
+      <mat-form-field
+        *ngFor="let lyricist of data.lyricist; let i = index"
+        class="full-width"
+      >
         <input
           type="text"
           matInput
@@ -78,10 +87,14 @@
           [(ngModel)]="lyricist.name"
           [matAutocomplete]="autoLyricist"
         />
-        <mat-autocomplete #autoLyricist="matAutocomplete">
+        <mat-autocomplete
+          #autoLyricist="matAutocomplete"
+          [displayWith]="displayName"
+        >
+          >
           <mat-option
             *ngFor="let lyricist of lyricists$ | async | sorter: 'name'"
-            [value]="lyricist.name"
+            [value]="lyricist"
           >
             <span>{{ lyricist.name }}</span></mat-option
           >
@@ -90,7 +103,7 @@
     </div>
 
     <div class="form-group">
-      <mat-form-field *ngFor="let composer of data.composer" class="full-width">
+      <mat-form-field *ngFor="let composer of data.composer; let i = index" class="full-width">
         <input
           type="text"
           matInput
@@ -99,10 +112,13 @@
           [(ngModel)]="composer.name"
           [matAutocomplete]="autoComposer"
         />
-        <mat-autocomplete #autoComposer="matAutocomplete">
+        <mat-autocomplete
+          #autoComposer="matAutocomplete"
+          [displayWith]="displayName"
+        >
           <mat-option
             *ngFor="let composer of composers$ | async | sorter: 'name'"
-            [value]="composer.name"
+            [value]="composer"
           >
             <span>{{ composer.name }}</span></mat-option
           >
@@ -111,7 +127,7 @@
     </div>
 
     <div class="form-group">
-      <mat-form-field *ngFor="let genre of data.x_genre" class="full-width">
+      <mat-form-field *ngFor="let genre of data.x_genre let i = index" class="full-width">
         <input
           type="text"
           matInput
@@ -120,10 +136,13 @@
           [(ngModel)]="genre.name"
           [matAutocomplete]="autoGenre"
         />
-        <mat-autocomplete #autoGenre="matAutocomplete">
+        <mat-autocomplete
+          #autoGenre="matAutocomplete"
+          [displayWith]="displayName"
+        >
           <mat-option
             *ngFor="let genre of genres$ | async | sorter: 'name'"
-            [value]="genre.name"
+            [value]="genre"
           >
             <span>{{ genre.name }}</span></mat-option
           >
