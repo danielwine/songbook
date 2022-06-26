@@ -20,8 +20,11 @@ module.exports = (service) => {
                     res.status(201).json(cp);
                 })
                 .catch(reason => {
-                    next(
-                        new createError.InternalServerError(reason.message))
+                    if (reason.message.includes('ValidationError'))
+                        next(new createError.BadRequest(reason.message))
+                    else
+                        next(
+                            new createError.InternalServerError(reason.message))
                 })
         },
         findAllIds: (req, res, next) => {
@@ -41,19 +44,29 @@ module.exports = (service) => {
         },
         updateOne: (req, res, next) => {
             const id = req.params.id;
+            if (isIdInvalid(id, next)) return
             return service.updateOne(id, req.body)
                 .then(entity => {
                     res.json(entity);
                 })
                 .catch(reason => {
-                    next(new createError.InternalServerError(reason.message));
+                    if (reason.message.includes('ValidationError'))
+                        next(new createError.BadRequest(reason.message))
+                    else
+                        next(
+                            new createError.InternalServerError(reason.message))
                 })
         },
         deleteOne: (req, res, next) => {
             const id = req.params.id;
             if (isIdInvalid(id, next)) return
             return service.deleteOne(id)
-                .then(() => res.json({}))
+                .then(item => {
+                    if (item == '') {
+                        return next(new createError
+                            .NotFound(msgNotFound))
+                    } else { res.json({}) }
+                })
                 .catch(reason => {
                     return next(
                         new createError.InternalServerError(reason));

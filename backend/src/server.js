@@ -46,12 +46,13 @@ app.post('/refresh', authHandlers.refresh);
 app.post('/logout', authHandlers.logout);
 
 app.use('/song',
+    // authenticateJwt,
     require('./controller/song/router'));
 app.use('/artist',
-    // authenticateJwt, adminOnly,
+    authenticateJwt,
     require('./controller/artist/router'));
 app.use('/album',
-    // authenticateJwt, adminOnly,
+    authenticateJwt,
     require('./controller/album/router'));
 app.use('/composer',
     authenticateJwt,

@@ -15,20 +15,23 @@
       />
     </mat-form-field>
 
-    <mat-form-field *ngIf="data.artist" class="full-width">
+    <mat-form-field class="full-width">
       <input
         required
         type="text"
         matInput
         name="artist"
         placeholder="Előadó"
-        [(ngModel)]="data.artist.name"
+        [(ngModel)]="data.artist"
         [matAutocomplete]="autoArtist"
       />
-      <mat-autocomplete #autoArtist="matAutocomplete">
+      <mat-autocomplete
+        #autoArtist="matAutocomplete"
+        [displayWith]="displayName"
+      >
         <mat-option
           *ngFor="let artist of artists$ | async | sorter: 'name'"
-          [value]="artist.name"
+          [value]="artist"
         >
           <span>{{ artist.name }}</span></mat-option
         >
