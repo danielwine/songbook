@@ -12,7 +12,7 @@
 
 **Elfogadási kritérium:**  
 
-Egy reszponzív, mobilra optimalizált listanézetben az alkalmazás kezdőoldalán megjelenik az összes, adatbázisban szereplő előadó, ABC sorrendben megjelenítve. Mindegyik név mellett számláló jelzi, hogy az adott előadóhoz hány bejegyzés tartozik.
+Egy egyszerűsített listanézetben az alkalmazás kezdőoldalán megjelenik az összes, adatbázisban szereplő előadó, ABC sorrendben megjelenítve. Mindegyik név mellett számláló jelzi, hogy az adott előadóhoz hány bejegyzés tartozik.
 
 ---
 
@@ -22,7 +22,25 @@ Egy reszponzív, mobilra optimalizált listanézetben az alkalmazás kezdőoldal
 
 **Elfogadási kritérium:**
 
-Az egyes előadókra kattintva egy új nézet megjeleníti az adott előadóhoz kapcsolódó dalok nevét ABC rendben, azok fontosabb adataival (legalább az album és a műfaj tulajdonságokkal) együtt.
+Az egyes előadókra kattintva egy másik nézet (egyszerű lista) megjeleníti az adott előadóhoz kapcsolódó dalok nevét ABC rendben.
+
+---
+
+**3. agilis felhasználói történet:**
+
+>  _Az adott dalt kiválasztva (egy harmadik nézetben) megtekinthető a dal szövege._
+
+**Elfogadási kritérium:**  
+- Az egyes dalokra rákattintva új nézet jelenik meg, mely tartalmazza az adott elem részleteit, elsősorban a dalszöveget. A betűtípusnak monospace típusúnak kell lennie, hogy a később hozzáadásra kerülő akkordok karakterre pontosan a szöveg megfelelő részei felett helyezkedhessenek el.
+
+---
+
+**4. agilis felhasználói történet:**
+
+> _Az egyszerű listák kereshetők_
+
+**Elfogadási kritérium:**  
+- Az egyszerű (gördülő konténerben) elhelyezett adatok fölött keresőmezők könnyítik meg a gyorskeresést.
 
 ---
 ---
@@ -70,10 +88,10 @@ az előadó neve, az album neve, amin az adott dal szerepel, az első megjelené
 
 **5. agilis felhasználói történet:**
 
-> _A dalok műfaj szerint listázhatók._
+> _A dalok műfaj szerint szűrhetőek._
 
 **Elfogadási kritérium:**  
-A műfaj (genre) kiválasztásával újratöldődik a listaoldal, ahol már csak az adott műfaj(ok)hoz tartozó adatok láthatók.
+A műfaj (genre) kiválasztásával és a kulcsszó megadásával frissül a listaoldal, ahol már csak az adott műfaj(ok)hoz tartozó adatok láthatók.
 
 ---
 
@@ -82,54 +100,21 @@ A műfaj (genre) kiválasztásával újratöldődik a listaoldal, ahol már csak
 > _Bármilyen egyéb kulcsszóra is lehet keresni függetlenül a műfajtól._
 
 **Elfogadási kritérium:**  
-A kulcsszó beírásával frissül a listaoldal, ahol már csak az adott kulcsszónak megfelelő adatok jelennek meg.
+Egy tetszőleges kulcsszó beírásával frissül a listaoldal, ahol minden olyan elem megjelenik, amelyiknek valamely tulajdonsága (részben) tartalmazza a kulcsszóval megadott értéket.
 
 ---
 
 **7. agilis felhasználói történet:**
 
-> _A dalok tulajdonságai alapján sorrendbe rendezhetőek az adatok._
-
-**Elfogadási kritérium:**  
-- A megjelenési év és a dalhossz tulajdonságok numerikusan növekvő vagy csökkenő sorrendben rendezhetőek.
-- Az előadó neve, albumcím, zeneszerző, szövegíró, műfaj tulajdonságok ABC szerinti és fordított sorrendben rendezhetőek.
-
----
-
-**8. agilis felhasználói történet:**
-
 > _Az újonnan megadott adatok validációja automatikusan megtörténik._
 
 **Elfogadási kritérium:**  
-- Nem megfelelő formátum esetén a beviteli mező alatt hibaüzenet jelenik meg.
-- Az üzenet leírja a helyes, szabványos formátumot.
-
----
----
-## _**3. A dalszöveg nézet**_
----
-
-**1. agilis felhasználói történet:**
-
->  _Az adott dalt kiválasztva megtekinthető a dal szövege._
-
-**Elfogadási kritérium:**  
-- Az egyes dalokra rákattintva új nézet jelenik meg, mely tartalmazza az adott elem részleteit, elsősorban a dalszöveget.
-
----
-
-**2. agilis felhasználói történet:**
-
-> _A dalszöveg szerkeszthető._
-
-**Elfogadási kritérium:**  
-- A szerkesztést jelölő ikonra kattintva a dalszöveg módosíthatóvá válik
-- A regisztrált felhasználó számára lehetséges az így végrehajtott módosítások mentése perzisztens módon a mentés ikonra kattintással.
+- Nem megfelelő formátum esetén egy snackbar-ban megjelenő üzenet figyelmeztet a helytelen kitöltésre és a nem, vagy nem megfelelően kitöltött mezők figyelemfelkeltő színűre váltanak.
 
 ---
 ---
 
-## _**4. Egyéb (al)oldalak**_
+## _**3. Egyéb (al)oldalak**_
 
 Az alábbiak a következő lehetséges (al)oldalakra érvényesek:
 
@@ -141,8 +126,6 @@ Az alábbiak a következő lehetséges (al)oldalakra érvényesek:
 
 **_Szövegírók_**
 
-**_Műfajok_**
-
 ---
 
 **1. agilis felhasználói történet:**
@@ -150,9 +133,9 @@ Az alábbiak a következő lehetséges (al)oldalakra érvényesek:
 
 **Elfogadási kritérium:**  
 - Az aloldal megjeleníti az összes előadót / albumot / zeneszerzőt / szövegírót / minden műfajt.
-- Míg a műfajlista egyszerű felsorolás, addig a személyekről vezetett nyilvántartás tartalmaz egyéb adatokat is (esetleg születési év, milyen zenekarhoz, előadóhoz köthető, stb.).
-- Előadók esetében kisméretű borítókép is látható
-- Albumok esetében kisméretű borítókép is látható a megjelenési év kötelezően megadandó adata mellett.
+- A személyekről vezetett nyilvántartás tartalmazhat egyéb adatokat is, de a hozzárendelt dalok száma mindenképpen látható.
+- Előadók esetében egy fotó linkje is megadható.
+- Albumok esetében az albumborító képe link formájában megadható.
 
 ---
 
@@ -177,10 +160,11 @@ Az alábbiak a következő lehetséges (al)oldalakra érvényesek:
 
 **4. agilis felhasználói történet:**
 
-> _Az elem törölhető._
+> _A dalokhoz nem kapcsolt elemek törölhetőek._
 
 **Elfogadási kritérium:**  
 - Az adott elem melletti törlés gombra kattintással törölhető az elem.
+- Törölni azonban csak azokat az elemeket lehet, amelyekhez (már) nincs hozzárendelve egyetlen dal sem.
 - A törlést követően frissül a listaoldal, a törölt elem onnan is eltávolításra kerül.
 
 ---
@@ -195,7 +179,6 @@ Az alábbiak a következő lehetséges (al)oldalakra érvényesek:
 **Elfogadási kritérium:**  
 
 - Felhasználói név és jelszó megadásával a felhasználó képes bejelentkezni az adminisztrációs felületre.
-- Felhasználó fiókkal nem rendelkező látogatóknak a rendszer felkínálja a regisztráció lehetőségét.
 
 ---
 ---
@@ -212,7 +195,7 @@ magas
 
 **Későbbi továbbfejlesztési lehetőségek:**  
 
-- Az albumok és előadók esetében csak fotót tartalmazó kártyanézet elkészítése
+- Az albumok és előadók esetében csak fotót tartalmazó kártyanézet elkészítése, illetve a belinkelt képek megjelenítése.
 - Műsörfüzetek (azaz setlist-ek) létrehozásának lehetősége, ami dalok gyűjteményét, meghatározott sorrendű kollekcióját jelentené
 - Akkordok kezelésének lehetősége
 - Különböző szöveges formátumok támogatása, fájlból való importálás és fájlba történő exportálás végett
@@ -222,6 +205,4 @@ magas
 
 ## **Linkek:**  
 
-- [A dokumentáció itt lesz érhető el.]()
-
-- [A kiegészítő anyagok itt lesznek elérhetők.]()
+- [A dokumentáció és a telepítési útmutató itt érhető el.](./DOCUMENTATION.md)
